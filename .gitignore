@@ -8,11 +8,8 @@
 *.war
 *.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
 
-
-
-writ-generator/.settings
-writ-generator/target
+writ-generator/.settings/
+writ-generator/target/
 writ-generator/.classpath
+.DS_Store
