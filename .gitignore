@@ -1,4 +1,5 @@
-writ-generator/.settings/
-writ-generator/target/
-writ-generator/.classpath
+writGenerator/.settings/
+writGenerator/target/
+writGenerator/.classpath
+writGenerator/WebContent
 .DS_Store
