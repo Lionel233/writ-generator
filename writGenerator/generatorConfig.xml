@@ -7,9 +7,9 @@
 	    driverClass="com.mysql.jdbc.Driver" 
 	    password="" 
 	    userId="root" />
-    <javaModelGenerator targetPackage="generator.po" targetProject="writGenerator/src/main/java" />
-    <sqlMapGenerator targetPackage="generator.xml" targetProject="writGenerator/src/main/java" />
-    <javaClientGenerator targetPackage="generator.dao" targetProject="writGenerator/src/main/java" type="XMLMAPPER" />
+    <javaModelGenerator targetPackage="main.java.generator.po" targetProject="writGenerator/src" />
+    <sqlMapGenerator targetPackage="main.java.generator.xml" targetProject="writGenerator/src" />
+    <javaClientGenerator targetPackage="main.java.generator.dao" targetProject="writGenerator/src" type="XMLMAPPER" />
 <!--     <table tableName="project" domainObjectName="ProjectPo"></table> -->
     <table tableName="user" domainObjectName="UserPo"></table>
   </context>
