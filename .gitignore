@@ -2,4 +2,6 @@ writGenerator/.settings/
 writGenerator/target/
 writGenerator/.classpath
 writGenerator/WebContent
+writGenerator/.project
+writGenerator/src/main/webapp/WEB-INF/applicationContext.xml
 .DS_Store
