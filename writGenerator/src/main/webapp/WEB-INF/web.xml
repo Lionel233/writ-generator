@@ -4,7 +4,7 @@
     <session-timeout>144</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>/WEB-INF/view/main.jsp</welcome-file>
   </welcome-file-list>
   
    <context-param>
@@ -29,5 +29,22 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
+  
+      <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <!-- 指定Spring的配置文件 -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/resources/spring-web.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
 </web-app>
