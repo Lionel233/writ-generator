@@ -8,4 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<c:url value="/rescource/css/bootstrap.css" />" />
 <link rel="stylesheet" href="<c:url value="/rescource/css/bootstrap.min.css" />" />
+<link rel="stylesheet" href="<c:url value="/rescource/css/main.css" />" />
+
+<script type="text/javascript" src="<c:url value="/rescource/js/jquery-1.11.2.min.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/rescource/js/bootstrap.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/rescource/js/bootstrap.min.js" />" ></script>  
+
 </head>
+
