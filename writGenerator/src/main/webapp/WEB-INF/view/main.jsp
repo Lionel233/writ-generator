@@ -3,14 +3,19 @@
 
 
 <jsp:include page="util.jsp" flush="true" />
-
+<style>
+.main-form .form-action{
+    text-align:center;
+    padding:20px 0px;
+}
+</style>
 <body>
 	<div class="container">
 		<form id="centerForm" action="login/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
 				<label for="centerName" class="col-sm-2 control-label">案件种类</label>
-				<div class="col-sm-8">
+				<div class="col-sm-2">
 					<input type="text" class="form-control" id="" placeholder="案件种类">
 				</div>
 			</div>
@@ -59,11 +64,13 @@
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">判决结果</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="" placeholder="判决结果">
+					<textarea  class="form-control" rows="4" id="" placeholder="判决结果"></textarea>
 				</div>
 			</div>
 		</form>
 		<div class="form-action">
+			<a id="submitBtn" class="button btn-md btn-green ajax"
+				href="">预览</a>
 			<a id="submitBtn" class="button btn-md btn-green ajax"
 				href="javascript:submit()">保存</a>
 		</div>
