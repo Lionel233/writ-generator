@@ -16,6 +16,7 @@ public class EvController {
 
 	@RequestMapping(value="evTypeJudge")
 	public @ResponseBody String getEvType(@RequestParam("name") String name){
+		
 		return evService.getEvType(name);
 	}
 }
