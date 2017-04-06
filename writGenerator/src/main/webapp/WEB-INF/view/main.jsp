@@ -6,7 +6,7 @@
 
 <body>
 	<div class="container">
-		<form id="centerForm" action="test" method="post"
+		<form id="centerForm" action="api/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
 				<label for="centerName" class="col-sm-2 control-label">案件种类</label>
