@@ -60,4 +60,16 @@ $(document).ready(function(){
 		$("#menu1").text($(this).text());
 	});
 });
+$("#eviName").keydown(function(event){  
+    if(event.which == "13"){
+		$.ajax({
+			url : "api/evTypeJudge",
+			data : {"name":$("#eviName").val()},
+			type : "POST",
+			success : function(r) {
+				$("#selectTeachPlan").val(r);
+			}
+		});
+    }
+});  
 </script>
