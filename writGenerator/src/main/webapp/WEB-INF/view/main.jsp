@@ -54,10 +54,16 @@
 				<label for="manager" class="col-sm-2 control-label">原告提供证据</label>
 				<div class="col-sm-10">
 					<a id="submitBtn" class="button btn-md btn-green ajax"
-						href="api/preview">新增证据</a>
+						>新增证据</a>
 				</div>
 			</div>
+			
+			
+			<div id="eviPageContainer">
 			<jsp:include page="evi.jsp" flush="true" />
+			</div>
+			
+			
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">被告提供证据</label>
 				<div class="col-sm-8">
@@ -96,4 +102,12 @@
 			}
 		});
 	}
+
+	$("#submitBtn").click(function() {
+		$newdiv = $(".eviPage")[0];
+		clone = $newdiv.cloneNode(true);
+		clone.id = clone.id + 1;
+		$("#eviPageContainer").append(clone);
+	}
+	);
 </script>
