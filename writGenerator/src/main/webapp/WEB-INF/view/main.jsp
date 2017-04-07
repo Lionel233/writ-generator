@@ -104,7 +104,7 @@
 	}
 
 	$("#submitBtn").click(function() {
-		$newdiv = $(".eviPage")[0];
+		$newdiv = $(".eviPage")[index];
 		clone = $newdiv.cloneNode(true);
 		clone.id = clone.id + 1;
 		$("#eviPageContainer").append(clone);

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%-- <jsp:include page="util.jsp" flush="true" /> --%>
 
-<div class="eviPage" id="ev_0">
+<div class="eviPage" id="ev_0" style="padding-left:70px">
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">名称</label>
 		<div class="col-sm-4">
@@ -29,10 +29,11 @@
 				<option value="书证">书证</option>
 				<option value="物证">物证</option>
 				<option value="证人证言">证人证言</option>
+				<option value="视听资料">视听资料</option>
 				<option value="当事人陈述">当事人陈述</option>
 				<option value="鉴定结论">鉴定结论</option>
 				<option value="笔录">笔录</option>
-				<option value="其他">其他</option>
+				<option value="其它">其它</option>
 			</select>
 		</div>
 
