@@ -63,6 +63,8 @@ public class EvServiceImpl implements EvService{
 
 	@Override
 	public String getEvType(String name){
+		System.out.println(name);
+		System.out.println(this.judge(name));
 		return this.judge(name);
 	}
 }
