@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%-- <jsp:include page="util.jsp" flush="true" /> --%>
 
-<div class="eviPage" id="0">
+<div class="eviPage" id="ev_0" style="border:1px solid #F00">
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">名称</label>
 		<div class="col-sm-4">
@@ -25,51 +25,32 @@
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">种类</label>
 		<div class="col-sm-4">
-			<div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button"
-					id="menu1" data-toggle="dropdown">
-					证据种类 <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">证人证言</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">书证</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">物证</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">视听资料</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">当事人陈述</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">鉴定结论</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">笔录</a></li>
-					<li role="presentation"><a class="menuitem" role="menuitem" tabindex="-1"
-						href="#">其它</a></li>
-				</ul>
-			</div>
+			<select id="selectTeachPlan" class="select2">
+				<option value="书证">书证</option>
+				<option value="物证">物证</option>
+				<option value="证人证言">证人证言</option>
+				<option value="书证">书证</option>
+				<option value="书证">书证</option>
+				<option value="书证">书证</option>
+			</select>
 		</div>
 
 	</div>
 </div>
 
 <script>
-$(document).ready(function(){
-	$(".menuitem").click(function(){
-		$("#menu1").text($(this).text());
+	$("#eviName").keydown(function(event) {
+		if (event.which == "13") {
+			$.ajax({
+				url : "api/evTypeJudge",
+				data : {
+					"name" : $("#eviName").val()
+				},
+				type : "POST",
+				success : function(r) {
+					$("#selectTeachPlan").val("物证");
+				}
+			});
+		}
 	});
-});
-$("#eviName").keydown(function(event){  
-    if(event.which == "13"){
-		$.ajax({
-			url : "api/evTypeJudge",
-			data : {"name":$("#eviName").val()},
-			type : "POST",
-			success : function(r) {
-				$("#selectTeachPlan").val(r);
-			}
-		});
-    }
-});  
 </script>
