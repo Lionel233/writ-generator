@@ -13,13 +13,13 @@
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">明细</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" id="" placeholder="证据明细">
+			<input type="text" class="form-control" id="detail" placeholder="证据明细">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">以证明</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" id="" placeholder="证据目的">
+			<input type="text" class="form-control" id="prove" placeholder="证据目的">
 		</div>
 	</div>
 	<div class="form-group">
@@ -54,5 +54,18 @@
 				}
 			});
 		}
+	});
+	
+	$("#eviName").blur(function() {
+		$.ajax({
+			url : "api/evTypeJudge",
+			data : {
+				"name" : $("#eviName").val()
+			},
+			type : "POST",
+			success : function(r) {
+				$("#selectTeachPlan").val(r);
+			}
+		});
 	});
 </script>

@@ -86,6 +86,8 @@
 </body>
 
 <script type="text/javascript">
+	var index = 0;
+
 	function submit() {
 		$.ajax({
 			url : $("#centerForm").attr("action"),
@@ -103,11 +105,23 @@
 		});
 	}
 
+	//把最上面一个(index = 0)克隆到最后面，并填补未克隆属性，然后将最上面一个清空
 	$("#submitBtn").click(function() {
-		$newdiv = $(".eviPage")[index];
-		clone = $newdiv.cloneNode(true);
-		clone.id = clone.id + 1;
+		$rawdiv = $(".eviPage")[0];
+		clone = $rawdiv.cloneNode(true);
+		index = index + 1;
+		clone.id = "ev_" + index;
 		$("#eviPageContainer").append(clone);
+		
+		$("#selectTeachPlan",clone).val(  $("#selectTeachPlan",$rawdiv).val()   );
+		
+		//清空最上面的
+		$("#eviName",$rawdiv).val("");
+		$("#detail",$rawdiv).val("");
+		$("#prove",$rawdiv).val("");
+		$("#selectTeachPlan",$rawdiv).val("");
+		
+		
 	}
 	);
 </script>
