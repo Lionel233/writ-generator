@@ -15,6 +15,7 @@ public class Result {
 	public static final String CODE_105 = "wrong username or password";
 	
 	public static final String CODE_201 = "case code is not provided";
+	public static final String CODE_202 = "case format is wrong";
 
 	public Result() {
 		super();

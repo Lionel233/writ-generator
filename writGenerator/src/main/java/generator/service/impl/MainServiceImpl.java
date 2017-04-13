@@ -23,8 +23,16 @@ public class MainServiceImpl implements MainService{
 			result.setMessage(Result.CODE_201);
 			return result;
 		}else{
+			int _code = 0;
+			try{
+				_code = Integer.parseInt(code);
+			}catch(Exception e){
+				result.setCode(202);
+				result.setMessage(Result.CODE_202);
+				return result;
+			}
 			WsDsrbPoExample ex = new WsDsrbPoExample();
-			ex.createCriteria().andAjxhEqualTo(Integer.parseInt(code));
+			ex.createCriteria().andAjxhEqualTo(_code);
 			long number = wsDsrbPoMapper.countByExample(ex);
 			
 			result.setCode(0);
