@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import main.java.generator.model.WritModel;
 import main.java.generator.service.MainService;
 import main.java.generator.utils.Result;
 
@@ -42,16 +43,18 @@ public class MainController {
 			System.out.println(result.getMessage());
 			return false;
 		}
-		System.out.println(result.getResult());
 		return (boolean)result.getResult();
 	}
 
 	@RequestMapping(value = "codeRecord")
 	public @ResponseBody ModelAndView getCodeRecord(HttpServletRequest request, HttpServletResponse response) {
 		String code = request.getParameter("code");
-		ModelAndView mv = new ModelAndView("main");
-		mv.getModel().put("name", "superball");
-		return mv;
+		
+		Result result = mainService.getCaseRecord(code);
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+		}
+		return new ModelAndView("main", "writModel",(WritModel) result.getResult());
 	}
 
 }

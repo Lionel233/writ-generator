@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.java.generator.dao.WsDsrbPoMapper;
+import main.java.generator.model.WritModel;
 import main.java.generator.po.WsDsrbPoExample;
 import main.java.generator.service.MainService;
 import main.java.generator.utils.Result;
@@ -45,8 +46,14 @@ public class MainServiceImpl implements MainService{
 
 	@Override
 	public Result getCaseRecord(String code) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Result result = new Result();
+		WritModel model = new WritModel();
+		
+		result.setCode(0);
+		result.setMessage(Result.CODE_0);
+		result.setResult(model);
+		return result;
 	}
 	
 	
