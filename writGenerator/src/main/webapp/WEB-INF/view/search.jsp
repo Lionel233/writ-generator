@@ -22,7 +22,7 @@
 <body>
 	<form id="searchForm" action="api/codeRecord" method="post" style="position: relative; margin: 100px;">
 		<input type="search" name="code" id="code" class="form-control"
-			placeholder="输入暗号">
+			placeholder="输入案号">
 		<button type="button" id="searchBtn2" class="btn btn-primary">
 			<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;搜索
 		</button>
