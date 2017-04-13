@@ -1,8 +1,11 @@
 package main.java.generator.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import main.java.generator.model.User;
 import main.java.generator.service.LoginService;
 
+@Service("loginService")
 public class LoginServiceImpl implements LoginService{
 
 	@Override

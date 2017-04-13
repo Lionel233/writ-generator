@@ -13,6 +13,8 @@ public class Result {
 	public static final String CODE_103 = "information provided is not enough";
 	public static final String CODE_104 = "username does not exist";
 	public static final String CODE_105 = "wrong username or password";
+	
+	public static final String CODE_201 = "case code is not provided";
 
 	public Result() {
 		super();

@@ -2,9 +2,12 @@ package main.java.generator.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import main.java.generator.model.User;
 import main.java.generator.service.AccountService;
 
+@Service("accountService")
 public class AccountServiceImpl implements AccountService{
 
 	@Override

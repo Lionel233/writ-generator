@@ -34,7 +34,7 @@ public class EvServiceImpl implements EvService{
 			while((line = reader.readLine())!=null){
 				if(line.trim().isEmpty()) continue;
 				String[] pairs = line.split("；");
-				System.out.println(line);
+//				System.out.println(line);
 				keywords.add(new Pair(pairs[0],pairs[1]));
 			}
 			
