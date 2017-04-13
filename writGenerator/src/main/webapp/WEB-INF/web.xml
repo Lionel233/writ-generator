@@ -4,7 +4,7 @@
     <session-timeout>144</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>/WEB-INF/view/main.jsp</welcome-file>
+    <welcome-file>/WEB-INF/view/search.jsp</welcome-file>
   </welcome-file-list>
   
    <context-param>

@@ -9,8 +9,10 @@
 	padding: 20px 0px;
 }
 </style>
+
 <body>
 	<div class="container">
+	name:${name}
 		<form id="centerForm" action="api/login/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
@@ -39,9 +41,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="manager" class="col-sm-2 control-label">被告诉称</label>
+				<label for="manager" class="col-sm-2 control-label">被告辩称</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="" placeholder="被告诉称">
+					<input type="text" class="form-control" id="" placeholder="被告辩称">
 				</div>
 			</div>
 			<div class="form-group">
@@ -88,6 +90,7 @@
 <script type="text/javascript">
 	var index = 0;
 
+
 	function submit() {
 		$.ajax({
 			url : $("#centerForm").attr("action"),
@@ -120,8 +123,6 @@
 		$("#detail",$rawdiv).val("");
 		$("#prove",$rawdiv).val("");
 		$("#selectTeachPlan",$rawdiv).val("");
-		
-		
 	}
 	);
 </script>
