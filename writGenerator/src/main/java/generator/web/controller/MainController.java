@@ -33,8 +33,8 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "codeRecord")
-	public @ResponseBody ModelAndView getCodeRecord(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("code") String code) {
+	public @ResponseBody ModelAndView getCodeRecord(HttpServletRequest request, HttpServletResponse response) {
+		String code = request.getParameter("code");
 		ModelAndView mv = new ModelAndView("main");
 		mv.getModel().put("name", "superball");
 		return mv;

@@ -20,8 +20,8 @@
 }
 </style>
 <body>
-	<form method="post" style="position: relative; margin: 100px;">
-		<input type="search" name="search" id="code" class="form-control"
+	<form id="searchForm" action="api/codeRecord" method="post" style="position: relative; margin: 100px;">
+		<input type="search" name="code" id="code" class="form-control"
 			placeholder="输入暗号">
 		<button type="submit" id="searchBtn2" class="btn btn-primary">
 			<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;搜索
@@ -37,8 +37,7 @@ $("#searchBtn2").click(function() {
 		type : "POST",
 		success : function(r) {
 			if (r) {
-				//getCodeRecord();
-				self.location="api/codeRecord";
+				$("#searchForm").submit();
 			} else {
 				alert("更新失败，点击确定重新载入编辑页面");
 			}
@@ -47,11 +46,4 @@ $("#searchBtn2").click(function() {
 }
 );
 
-function getCodeRecord(){
-	$.ajax({
-		url : "api/codeRecord",
-		data : {"code":$("#code").val()},
-		type : "POST"
-	});
-}
 </script>
