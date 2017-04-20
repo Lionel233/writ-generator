@@ -10,23 +10,33 @@
 	padding: 20px 0px;
 }
 </style>
-<jsp:include page="util.jsp" flush="true" />
-<style>
-.main-form .form-action {
-	text-align: center;
-	padding: 20px 0px;
-}
-</style>
 
 <body>
 	<t:header currentModule="在线编辑" />
 	<div class="container">
 		<div class="form-horizontal">
 			<div class="form-group">
+				<label for="centerName" class="col-sm-2 control-label">文书名称</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="文书名称">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="centerName" class="col-sm-2 control-label">经办法院</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="经办法院">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="centerName" class="col-sm-2 control-label">案号</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="案号">
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="centerName" class="col-sm-2 control-label">案件种类</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="a" id="a"
-						placeholder="案件种类">
+					<input type="text" class="form-control" placeholder="案件种类">
 				</div>
 			</div>
 			<div class="panel-group" style="width: 300px; margin-left: 100px">
@@ -104,11 +114,10 @@
 			</div>
 		</div>
 	</form>
-	<div class="form-action">
+	<div class="form-action" style="width:200px;float: none;  display: block;  margin-left: auto;margin-right: auto;">
 		<a id="submitBtn" class="button btn-md btn-green ajax" href="preview">预览</a>
 		<a id="submitBtn" class="button btn-md btn-green ajax"
 			href="javascript:submit()">保存</a>
-	</div>
 	</div>
 </body>
 
