@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%-- <jsp:include page="util.jsp" flush="true" /> --%>
 
-<div class="eviPage" id="ev_0" style="padding-left: 70px">
+<div class="eviPage" id="ev_0" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">名称</label>
 		<div class="col-sm-4">
@@ -10,24 +10,22 @@
 				<input type="text" class="form-control" id="eviName"
 					placeholder="证据名称"> 
 				<span class="input-group-btn">
-					<button class="btn btn-default removeButton" type="button">X</button>
+					<button class="btn btn-default removeButton" type="button" style="color:red">X</button>
 				</span>
 			</div>
-
-
 		</div>
 
 	</div>
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">明细</label>
-		<div class="col-sm-4">
+		<div class="col-sm-8">
 			<input type="text" class="form-control" id="detail"
 				placeholder="证据明细">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">以证明</label>
-		<div class="col-sm-4">
+		<div class="col-sm-8">
 			<input type="text" class="form-control" id="prove" placeholder="证据目的">
 		</div>
 	</div>

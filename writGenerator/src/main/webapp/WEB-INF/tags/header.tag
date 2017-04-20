@@ -1,5 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="currentModule" required="false" type="String"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
 .navbar-nav>li>a {
@@ -26,10 +27,11 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">文书生成工具</a>
 		</div>
-		<div>
+		<c:if test="${not empty currentModule}">
+		 <div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">iOS</a></li>
-				<li><a href="#">SVN</a></li>
+				<li class="active"><a href="#">  ${currentModule}</a></li>
+				<%--<li><a href="#">SVN</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Java <b class="caret"></b>
 				</a>
@@ -41,8 +43,9 @@
 						<li><a href="#">分离的链接</a></li>
 						<li class="divider"></li>
 						<li><a href="#">另一个分离的链接</a></li>
-					</ul></li>
+					</ul></li>--%>
 			</ul>
 		</div>
+		</c:if>
 	</div>
 </nav>

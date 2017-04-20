@@ -20,7 +20,7 @@
 }
 </style>
 <body>
-	<t:header currentModule="学籍管理"  />
+	<t:header/>
 	<form id="searchForm" action="api/codeRecord" method="post"
 		style="position: relative; margin: 230px;">
 		<input type="input" name="code" id="code"
