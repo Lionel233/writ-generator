@@ -51,30 +51,23 @@
 					<input type="text" class="form-control" id="" placeholder="查明事实">
 				</div>
 			</div>
-			
-			
-			
-			<div>
-				<label for="manager" class="col-sm-2 control-label">原告提供证据</label>
-				<div class="col-sm-10">
-					<a id="submitBtn" class="button btn-md btn-green ajax">新增证据</a>
-				</div>
-			</div>
-
-
-			<div id="eviPageContainer">
-				<jsp:include page="evi.jsp" flush="true" />
-			</div>
-
 
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label"> <select
 					id="selectTeachPlan" class="select2">
 						<c:forEach items="${writModel.litigantList}" var="litigant">
-								<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}</option>
+							<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb}
+								${litigant.wsDsrb.xm}</option>
 						</c:forEach>
 				</select>提供证据
 				</label>
+				<div class="col-sm-10">
+					<a id="submitBtn" class="button btn-md btn-green ajax">新增证据</a>
+				</div>
+			</div>
+
+			<div id="eviPageContainer">
+				<jsp:include page="evi.jsp" flush="true" />
 			</div>
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">判决结果</label>
