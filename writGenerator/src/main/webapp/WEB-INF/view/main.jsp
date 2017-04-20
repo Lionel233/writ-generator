@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -114,7 +115,8 @@
 			</div>
 		</div>
 	</form>
-	<div class="form-action" style="width:200px;float: none;  display: block;  margin-left: auto;margin-right: auto;">
+	<div class="form-action"
+		style="width: 200px; float: none; display: block; margin-left: auto; margin-right: auto;">
 		<a id="submitBtn" class="button btn-md btn-green ajax" href="preview">预览</a>
 		<a id="submitBtn" class="button btn-md btn-green ajax"
 			href="javascript:submit()">保存</a>
@@ -134,7 +136,6 @@
 		$.template("innerlayer", innerLayer);
 		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer");
 
-		//把最上面一个(index = 0)克隆到最后面，并填补未克隆属性，然后将最上面一个清空
 		$("#addNewEvBtn").click(function() {
 			movies.push({
 				id : movies.length,

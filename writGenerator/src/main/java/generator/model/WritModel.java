@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import main.java.generator.po.EvidencePo;
+import main.java.generator.po.WsAjjbxxb;
 
 public class WritModel implements Serializable {
 
 	/**
-	 * 案件分类
+	 * 案件基本信息
 	 */
-	private String classification;
+	private WsAjjbxxb ajjbxxb;
 	// private String accusers;
 	// private String defendants;
 	/**
@@ -44,12 +45,12 @@ public class WritModel implements Serializable {
 		super();
 	}
 
-	public String getClassification() {
-		return classification;
+	public WsAjjbxxb getAjjbxxb() {
+		return ajjbxxb;
 	}
 
-	public void setClassification(String classification) {
-		this.classification = classification;
+	public void setAjjbxxb(WsAjjbxxb ajjbxxb) {
+		this.ajjbxxb = ajjbxxb;
 	}
 
 	public ArrayList<Litigant> getLitigantList() {

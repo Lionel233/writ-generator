@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import main.java.generator.dao.WsAjjbxxbMapper;
 import main.java.generator.dao.WsDsrQkPoMapper;
 import main.java.generator.dao.WsDsrQzcsPoMapper;
 import main.java.generator.dao.WsDsrbPoMapper;
 import main.java.generator.model.Litigant;
 import main.java.generator.model.WritModel;
+import main.java.generator.po.WsAjjbxxbExample;
 import main.java.generator.po.WsDsrQkPo;
 import main.java.generator.po.WsDsrQkPoExample;
 import main.java.generator.po.WsDsrQzcsPo;
@@ -29,6 +31,8 @@ public class MainServiceImpl implements MainService{
 	WsDsrQkPoMapper wsDsrQkPoMapper;
 	@Autowired
 	WsDsrQzcsPoMapper wsDsrQzcsMapper;
+	@Autowired
+	WsAjjbxxbMapper wsAjjbxxbMapper;
 	
 	@Override
 	public Result isCaseExist(String code) {
@@ -75,6 +79,11 @@ public class MainServiceImpl implements MainService{
 			result.setMessage(Result.CODE_202);
 			return result;
 		}
+		
+		//得到并写入案件基本信息
+		WsAjjbxxbExample ajjbxxbEx = new WsAjjbxxbExample();
+		ajjbxxbEx.createCriteria().andAjxhEqualTo(_code);
+		model.setAjjbxxb(wsAjjbxxbMapper.selectByExample(ajjbxxbEx).get(0));
 		
 		//得到当事人基本信息   列表
 		WsDsrbPoExample dsrbEx = new WsDsrbPoExample();
