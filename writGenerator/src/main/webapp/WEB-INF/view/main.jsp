@@ -48,26 +48,10 @@
 				</div>
 			</div>
 		</div>
-
-		<form id="centerForm" action="api/login/test" method="post"
-			enctype="multipart/form-data" class="form-horizontal">
-			<div class="form-group">
-				<label class="col-sm-2 control-label">${litigant.wsDsrb.dsrlb}</label>
-				<div class="col-sm-2">
-					<input readonly="readonly" class="form-control"
-						value="${litigant.wsDsrb.xm}">
-				</div>
-			</div>
 	</div>
+
 	<form id="centerForm" action="api/login/test" method="post"
 		enctype="multipart/form-data" class="form-horizontal">
-		<div class="form-group">
-			<label for="centerName" class="col-sm-2 control-label">案件种类</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="a" id="a"
-					placeholder="案件种类">
-			</div>
-		</div>
 		<div class="form-group">
 			<label for="manager" class="col-sm-2 control-label">原告诉称</label>
 			<div class="col-sm-8">
@@ -101,16 +85,14 @@
 						</select>提供证据
 						</label>
 						<div class="col-sm-2">
-							<a id="submitBtn" class="button btn-md btn-green ajax">+</a>
+							<a id="addNewEvBtn" class="button btn-md btn-green ajax">+</a>
 						</div>
 					</div>
-					<div id="eviPageContainer">
-						<jsp:include page="evi.jsp" flush="true" />
-					</div>
+					<div id="eviPageContainer"></div>
 				</div>
 			</div>
 			<div class="col-md-1 column" style="margin-top: 100px">
-				<a id="submitBtn" class="button btn-md btn-green ajax">+</a>
+				<a id="addEviSub" class="button btn-md btn-green ajax">+</a>
 			</div>
 		</div>
 
@@ -121,12 +103,12 @@
 				<textarea class="form-control" rows="4" id="" placeholder="判决结果"></textarea>
 			</div>
 		</div>
-		</form>
-		<div class="form-action">
-			<a id="submitBtn" class="button btn-md btn-green ajax" href="preview">预览</a>
-			<a id="submitBtn" class="button btn-md btn-green ajax"
-				href="javascript:submit()">保存</a>
-		</div>
+	</form>
+	<div class="form-action">
+		<a id="submitBtn" class="button btn-md btn-green ajax" href="preview">预览</a>
+		<a id="submitBtn" class="button btn-md btn-green ajax"
+			href="javascript:submit()">保存</a>
+	</div>
 	</div>
 </body>
 

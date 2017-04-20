@@ -3,7 +3,7 @@ function heredoc(fn) {
 }
 
 var innerLayer = heredoc(function(){
-    /*    <div class="eviPage" id="${id}" style="padding-left: 70px">
+    /*    <div class="eviPage" id="${id}" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">名称</label>
      <div class="col-sm-4">
@@ -11,7 +11,7 @@ var innerLayer = heredoc(function(){
      <input type="text" class="form-control" id="name" value="${name}"
      placeholder="证据名称">
      <span class="input-group-btn">
-     <button class="btn btn-default removeButton" type="button">X</button>
+     <button class="btn btn-default removeButton" type="button" style="color:red">X</button>
      </span>
      </div>
 
@@ -21,14 +21,14 @@ var innerLayer = heredoc(function(){
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">明细</label>
-     <div class="col-sm-4">
+     <div class="col-sm-8">
      <input type="text" class="form-control" id="detail" value="${detail}"
      placeholder="证据明细">
      </div>
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">以证明</label>
-     <div class="col-sm-4">
+     <div class="col-sm-8">
      <input type="text" class="form-control" id="prove" value="${prove}" placeholder="证据目的">
      </div>
      </div>
