@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -12,7 +13,17 @@
 
 <body>
 	<div class="container">
-	name:${name}
+		<div class="form-horizontal">
+			<c:forEach items="${writModel.litigantList}" var="litigant">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">${litigant.wsDsrb.dsrlb}</label>
+					<div class="col-sm-2">
+						<input readonly="readonly" class="form-control"
+							value="${litigant.wsDsrb.xm}">
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 		<form id="centerForm" action="api/login/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
 			<div class="form-group">
@@ -20,18 +31,6 @@
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="a" id="a"
 						placeholder="案件种类">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="centerName" class="col-sm-2 control-label">原告</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="" placeholder="原告">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="centerAddress" class="col-sm-2 control-label">被告</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="" placeholder="被告">
 				</div>
 			</div>
 			<div class="form-group">
@@ -52,25 +51,30 @@
 					<input type="text" class="form-control" id="" placeholder="查明事实">
 				</div>
 			</div>
+			
+			
+			
 			<div>
 				<label for="manager" class="col-sm-2 control-label">原告提供证据</label>
 				<div class="col-sm-10">
-					<a id="submitBtn" class="button btn-md btn-green ajax"
-						>新增证据</a>
+					<a id="submitBtn" class="button btn-md btn-green ajax">新增证据</a>
 				</div>
 			</div>
-			
-			
+
+
 			<div id="eviPageContainer">
-			<jsp:include page="evi.jsp" flush="true" />
+				<jsp:include page="evi.jsp" flush="true" />
 			</div>
-			
-			
+
+
 			<div class="form-group">
-				<label for="manager" class="col-sm-2 control-label">被告提供证据</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="" placeholder="被告提供证据">
-				</div>
+				<label for="manager" class="col-sm-2 control-label"> <select
+					id="selectTeachPlan" class="select2">
+						<c:forEach items="${writModel.litigantList}" var="litigant">
+								<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}</option>
+						</c:forEach>
+				</select>提供证据
+				</label>
 			</div>
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">判决结果</label>
@@ -89,7 +93,6 @@
 
 <script type="text/javascript">
 	var index = 0;
-
 
 	function submit() {
 		$.ajax({
@@ -115,14 +118,13 @@
 		index = index + 1;
 		clone.id = "ev_" + index;
 		$("#eviPageContainer").append(clone);
-		
-		$("#selectTeachPlan",clone).val(  $("#selectTeachPlan",$rawdiv).val()   );
-		
+
+		$("#selectTeachPlan", clone).val($("#selectTeachPlan", $rawdiv).val());
+
 		//清空最上面的
-		$("#eviName",$rawdiv).val("");
-		$("#detail",$rawdiv).val("");
-		$("#prove",$rawdiv).val("");
-		$("#selectTeachPlan",$rawdiv).val("");
-	}
-	);
+		$("#eviName", $rawdiv).val("");
+		$("#detail", $rawdiv).val("");
+		$("#prove", $rawdiv).val("");
+		$("#selectTeachPlan", $rawdiv).val("");
+	});
 </script>

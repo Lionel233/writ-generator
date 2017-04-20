@@ -53,7 +53,7 @@
 	$("#eviName").keydown(function(event) {
 		if (event.which == "13") {
 			$.ajax({
-				url : "api/evTypeJudge",
+				url : "evTypeJudge",
 				data : {
 					"name" : $("#eviName").val()
 				},
@@ -67,7 +67,7 @@
 
 	$("#eviName").blur(function() {
 		$.ajax({
-			url : "api/evTypeJudge",
+			url : "evTypeJudge",
 			data : {
 				"name" : $("#eviName").val()
 			},
