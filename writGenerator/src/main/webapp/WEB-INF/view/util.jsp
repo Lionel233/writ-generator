@@ -17,6 +17,9 @@
 <script type="text/javascript" src="<c:url value="/rescource/select2/js/select2.full.min.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/select2/js/select2.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/select2/js/select2.min.js" />" ></script>  
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="<c:url value="/rescource/js/template.js" />" ></script>  
 
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
