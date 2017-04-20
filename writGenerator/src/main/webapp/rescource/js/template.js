@@ -3,7 +3,7 @@ function heredoc(fn) {
 }
 
 var innerLayer = heredoc(function(){
-    /*    <div class="eviPage" id="${id}" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
+    /*    <div class="eviPage" id="movie_${id}" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">名称</label>
      <div class="col-sm-4">
@@ -80,8 +80,9 @@ function removeId(objArray,idValue){
         }
     }
     for(;i<objArray.length;i++){
-        objArray[i].id = objArray[i].id - 1;
+        objArray[i].id = "movie_" + (objArray[i].id - 1);
     }
+    
 }
 
 $(document).ready(function(){
@@ -99,26 +100,14 @@ $(document).ready(function(){
         });
     });
 
-//    $("#name").blur(function() {
-//        $.ajax({
-//            url : "evTypeJudge",
-//            data : {
-//                "name" : $("#name").val()
-//            },
-//            type : "POST",
-//            success : function(r) {
-//                $("#type").val(r);
-//            }
-//        });
-//    });
-
     //删除后需要将模板对象内对应的元素删除
     $("body").on("click",".removeButton",function(e){
         var id = $(this).parent().parent().parent().parent().parent().attr("id");
-        id = parseInt(id);
-        $(this).parent().parent().parent().parent().parent().remove();
+        id = parseInt(id.replace("movie_",""));
+        var eviPageContainer = $(this).parent().parent().parent().parent().parent().parent();
+//        $(this).parent().parent().parent().parent().parent().remove();
         removeId(movies,id);
-        $("#eviPageContainer").empty();
-		$.tmpl( "innerlayer", movies ).appendTo( "#eviPageContainer" );
+        eviPageContainer.empty();
+		$.tmpl( "innerlayer", movies ).appendTo( "#" + eviPageContainer.attr("id") );
     });
 });

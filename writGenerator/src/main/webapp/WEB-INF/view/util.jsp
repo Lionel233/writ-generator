@@ -20,7 +20,7 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 <script type="text/javascript" src="<c:url value="/rescource/js/template.js" />" ></script>  
-
+<script type="text/javascript" src="<c:url value="/rescource/js/outerTemplate.js" />" ></script>  
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 

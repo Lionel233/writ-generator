@@ -83,8 +83,8 @@
 		</div>
 
 		<div class="row clearfix">
-			<div class="col-md-11 column">
-				<div class="form-group evi"
+			<div class="col-md-11 column" id = "outerContainer">
+<%-- 				<div class="form-group evi"
 					style="border: 1px dotted black; width: 800px; margin-left: 60px; float: left">
 					<div class="form-group">
 						<label for="manager" class="col-sm-4 control-label"> <select
@@ -100,7 +100,7 @@
 						</div>
 					</div>
 					<div id="eviPageContainer"></div>
-				</div>
+				</div> --%>
 			</div>
 			<div class="col-md-1 column" style="margin-top: 100px">
 				<a id="addEviSub" class="button btn-md btn-green ajax">+</a>
@@ -124,29 +124,60 @@
 </body>
 
 <script type="text/javascript">
+	var litigantList = [];
+	var i = 0;
+	<c:forEach items="${writModel.litigantList}" var="litigant">
+		litigantList.push({
+			id : i,
+			dsrlb:"${litigant.wsDsrb.dsrlb}",
+			xm: "${litigant.wsDsrb.xm}",
+		})
+		i ++;
+	</c:forEach>
+
 	var movies = [ {
 		id : 0,
 		name : "",
 		detail : "",
 		prove : "",
-		type : "书证"
+		type : "书证",
+		movieSeries_id : 0
 	} ];
+	
+	var movieSeries = [{
+		id : 0
+	}];
 
 	$(document).ready(function() {
 		$.template("innerlayer", innerLayer);
-		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer");
-
-		$("#addNewEvBtn").click(function() {
-			movies.push({
-				id : movies.length,
+		$.template("outerLayer", outerLayer);
+		$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
+		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0");
+		
+/* 		$("#addNewEvBtn").click(function() {
+ 			movies.push({
+				movies_id : "movies" + movies.length,
 				name : "",
 				detail : "",
 				prove : "",
 				type : "书证"
 			});
-			$("#eviPageContainer").empty();
-			$.tmpl("innerlayer", movies).appendTo("#eviPageContainer");
+			$("#eviPageContainer_0").empty();
+			$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0"); 
+			addOneEv(0);
 		});
+ */
+		$("#addEviSub").click(function() {
+			movieSeries.push({
+				id: movieSeries.length
+			});
+			$("#outerContainer").empty();
+			$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer"); 
+			for(var i = 0;i < movieSeries.length;i ++){
+				showEvSeries(i);
+			}
+		});
+
 	});
 
 	function submit() {
