@@ -53,7 +53,7 @@
 
 		<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label"> <select
-		id="selectTeachPlan" class="select2">
+		id="" class="select2">
 		<c:forEach items="${writModel.litigantList}" var="litigant">
 			<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb}
 			${litigant.wsDsrb.xm}</option>
@@ -84,12 +84,8 @@
 		</body>
 
 		<script type="text/javascript">
-			var maxId = 2;
-
 			var movies = [
-			{id:0},
-			{id:1},
-			{id:2}
+			{id:0,name:"",detail:"",prove:"",type:"书证"}
 			];
 
 			$(document).ready(function(){
@@ -98,7 +94,7 @@
 
 				//把最上面一个(index = 0)克隆到最后面，并填补未克隆属性，然后将最上面一个清空
 				$("#addNewEvBtn").click(function() {
-					movies.push({id:++maxId});
+					movies.push({id:movies.length,name:"",detail:"",prove:"",type:"书证"});
 					$("#eviPageContainer").empty();
 					$.tmpl( "innerlayer", movies ).appendTo( "#eviPageContainer" );
 		});

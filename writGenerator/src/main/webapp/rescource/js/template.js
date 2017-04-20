@@ -8,7 +8,7 @@ var innerLayer = heredoc(function(){
      <label for="manager" class="col-sm-2 control-label">名称</label>
      <div class="col-sm-4">
      <div class="input-group">
-     <input type="text" class="form-control" id="eviName"
+     <input type="text" class="form-control" id="name" value="${name}"
      placeholder="证据名称">
      <span class="input-group-btn">
      <button class="btn btn-default removeButton" type="button">X</button>
@@ -22,20 +22,20 @@ var innerLayer = heredoc(function(){
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">明细</label>
      <div class="col-sm-4">
-     <input type="text" class="form-control" id="detail"
+     <input type="text" class="form-control" id="detail" value="${detail}"
      placeholder="证据明细">
      </div>
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">以证明</label>
      <div class="col-sm-4">
-     <input type="text" class="form-control" id="prove" placeholder="证据目的">
+     <input type="text" class="form-control" id="prove" value="${prove}" placeholder="证据目的">
      </div>
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">种类</label>
      <div class="col-sm-4">
-     <select id="selectTeachPlan" class="select2">
+     <select id="type" class="select2">
      <option value="书证">书证</option>
      <option value="物证">物证</option>
      <option value="证人证言">证人证言</option>
@@ -46,16 +46,37 @@ var innerLayer = heredoc(function(){
      <option value="其它">其它</option>
      </select>
      </div>
-
+	
      </div>
-     </div>*/
+     </div>
+     <script>
+     	$("#type",$("#${id}")).val("${type}");
+     	
+     	$("#name",$("#${id}")).change(function(){
+     		movies[${id}].name = $("#name",$("#${id}")).val();
+     	});
+     	
+     	$("#detail",$("#${id}")).change(function(){
+     		movies[${id}].detail = $("#detail",$("#${id}")).val();
+     	});
+     	
+     	$("#prove",$("#${id}")).change(function(){
+     		movies[${id}].prove = $("#prove",$("#${id}")).val();
+     	});
+     	
+     	$("#type",$("#${id}")).change(function(){
+     		movies[${id}].type = $("#type",$("#${id}")).val();
+     	});
+     </script>
+     */
 });
 
 function removeId(objArray,idValue){
     var i = 0;
     for(;i < objArray.length;i ++){
         if(objArray[i].id === idValue){
-            objArray.splice(i,i+1);
+            objArray.splice(i,1);
+            break;
         }
     }
     for(;i<objArray.length;i++){
@@ -64,22 +85,8 @@ function removeId(objArray,idValue){
 }
 
 $(document).ready(function(){
-    $("#eviName").keydown(function(event) {
-        if (event.which == "13") {
-            $.ajax({
-                url : "evTypeJudge",
-                data : {
-                    "name" : $("#eviName").val()
-                },
-                type : "POST",
-                success : function(r) {
-                    $("#selectTeachPlan").val(r);
-                }
-            });
-        }
-    });
-    
-    $("body").on("blur","#eviName",function(){
+    $("body").on("blur","#name",function(){
+    	var typeSelector = $("#type",$(".eviPage")[parseInt($(this).parent().parent().parent().parent().attr("id"))]);
         $.ajax({
             url : "evTypeJudge",
             data : {
@@ -87,20 +94,20 @@ $(document).ready(function(){
             },
             type : "POST",
             success : function(r) {
-                $("#selectTeachPlan",$(this).parent().parent().parent().parent()).val(r);
+            	typeSelector.val(r);
             }
         });
     });
 
-//    $("#eviName").blur(function() {
+//    $("#name").blur(function() {
 //        $.ajax({
 //            url : "evTypeJudge",
 //            data : {
-//                "name" : $("#eviName").val()
+//                "name" : $("#name").val()
 //            },
 //            type : "POST",
 //            success : function(r) {
-//                $("#selectTeachPlan").val(r);
+//                $("#type").val(r);
 //            }
 //        });
 //    });
@@ -111,5 +118,7 @@ $(document).ready(function(){
         id = parseInt(id);
         $(this).parent().parent().parent().parent().parent().remove();
         removeId(movies,id);
+        $("#eviPageContainer").empty();
+		$.tmpl( "innerlayer", movies ).appendTo( "#eviPageContainer" );
     });
 });
