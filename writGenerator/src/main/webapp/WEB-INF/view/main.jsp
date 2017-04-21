@@ -162,14 +162,10 @@ a.button.plus {
 
 <script type="text/javascript">
 	var litigantList = [];
-	var i = 0;
 	<c:forEach items="${writModel.litigantList}" var="litigant">
 		litigantList.push({
-			id : i,
-			dsrlb:"${litigant.wsDsrb.dsrlb}",
-			xm: "${litigant.wsDsrb.xm}",
+			content: "${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}"
 		})
-		i ++;
 	</c:forEach>
 
 	var movies = [ {
@@ -182,7 +178,8 @@ a.button.plus {
 	} ];
 	
 	var movieSeries = [{
-		id : 0
+		id : 0,
+		selectorValue:""
 	}];
 
 	$(document).ready(function() {
@@ -193,7 +190,8 @@ a.button.plus {
 		
 		$("#addEviSub").click(function() {
 			movieSeries.push({
-				id: movieSeries.length
+				id: movieSeries.length,
+				selectorValue:""
 			});
 			$("#outerContainer").empty();
 			$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer"); 

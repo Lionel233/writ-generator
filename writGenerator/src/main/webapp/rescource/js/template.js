@@ -88,7 +88,7 @@ function removeId(objArray,idValue){
 
 $(document).ready(function(){
     $("body").on("blur","#name",function(){
-    	var typeSelector = $("#type",$(".eviPage")[parseInt($(this).parent().parent().parent().parent().attr("id"))]);
+    	var typeSelector = $("#type",$(this).parent().parent().parent().parent());
         $.ajax({
             url : "evTypeJudge",
             data : {

@@ -3,7 +3,7 @@ var outerLayer = heredoc(function(){
 		style="border: 1px dotted black; width: 800px; margin-left: 80px;">
 		<div class="form-group">
 			<label for="manager" class="col-sm-4 control-label"> 
-			<select id="evSelector" class="select2">
+			<select id="evSelector" class="select2 evSelector">
 
 			</select>
 			提供证据
@@ -21,16 +21,27 @@ var outerLayer = heredoc(function(){
 				addOneEv("${id}");
 			});
 			
-			for(var i = 0;i < litigantList.length;i ++){
-				var wsDsrb = litigantList[i].dsrlb;
-				var xm = litigantList[i].xm;
-				$("#evSelector",$("#movieSeries_${id}")).append(new Option(wsDsrb + " " + xm,wsDsrb + " " + xm));
+			$("#evSelector",$("#movieSeries_${id}")).change(function(){
+				movieSeries[${id}].selectorValue = $("#evSelector",$("#movieSeries_${id}")).val();
+			});
+			
+			var exceptList = [];
+			var selectors = $(".evSelector");
+			for (var i = 0;i < selectors.length;i ++){
+				exceptList.push($(selectors[i]).val());
 			}
+			
+			for(var i = 0;i < litigantList.length;i ++){
+				var content = litigantList[i].content;
+				if(exceptList.indexOf(content) >= 0){
+					continue;
+				}
+				$("#evSelector",$("#movieSeries_${id}")).append(new Option(content,content));
+			}
+			$("#evSelector",$("#movieSeries_${id}")).val(movieSeries[${id}].selectorValue);
 			
 		});
 		
-
-	
 	</script>
 	
 	*/
