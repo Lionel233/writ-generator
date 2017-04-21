@@ -50,27 +50,28 @@ var innerLayer = heredoc(function(){
      </div>
      </div>
      <script>
-     	$("#type",$("#${id}")).val("${type}");
+     	$("#type",$("#movie_${id}")).val("${type}");
      	
-     	$("#name",$("#${id}")).change(function(){
-     		movies[${id}].name = $("#name",$("#${id}")).val();
+     	$("#name",$("#movie_${id}")).change(function(){
+     		movies[${id}].name = $("#name",$("#movie_${id}")).val();
      	});
      	
-     	$("#detail",$("#${id}")).change(function(){
-     		movies[${id}].detail = $("#detail",$("#${id}")).val();
+     	$("#detail",$("#movie_${id}")).change(function(){
+     		movies[${id}].detail = $("#detail",$("#movie_${id}")).val();
      	});
      	
-     	$("#prove",$("#${id}")).change(function(){
-     		movies[${id}].prove = $("#prove",$("#${id}")).val();
+     	$("#prove",$("#movie_${id}")).change(function(){
+     		movies[${id}].prove = $("#prove",$("#movie_${id}")).val();
      	});
      	
-     	$("#type",$("#${id}")).change(function(){
-     		movies[${id}].type = $("#type",$("#${id}")).val();
+     	$("#type",$("#movie_${id}")).change(function(){
+     		movies[${id}].type = $("#type",$("#movie_${id}")).val();
      	});
      </script>
      */
 });
 
+//objArray 为 movies数组，中间的id为Int型纯数字
 function removeId(objArray,idValue){
     var i = 0;
     for(;i < objArray.length;i ++){
@@ -80,7 +81,7 @@ function removeId(objArray,idValue){
         }
     }
     for(;i<objArray.length;i++){
-        objArray[i].id = "movie_" + (objArray[i].id - 1);
+        objArray[i].id = objArray[i].id - 1;
     }
     
 }
@@ -96,6 +97,9 @@ $(document).ready(function(){
             type : "POST",
             success : function(r) {
             	typeSelector.val(r);
+            	
+            	//手动调用onchange监听器
+            	typeSelector.change();
             }
         });
     });
@@ -105,9 +109,12 @@ $(document).ready(function(){
         var id = $(this).parent().parent().parent().parent().parent().attr("id");
         id = parseInt(id.replace("movie_",""));
         var eviPageContainer = $(this).parent().parent().parent().parent().parent().parent();
-//        $(this).parent().parent().parent().parent().parent().remove();
+        
+        //从数组中删除
         removeId(movies,id);
+        
+        //清空并展示某个证据集合
         eviPageContainer.empty();
-		$.tmpl( "innerlayer", movies ).appendTo( "#" + eviPageContainer.attr("id") );
+        showEvSeries(parseInt(eviPageContainer.attr("id").replace("eviPageContainer_","")));
     });
 });

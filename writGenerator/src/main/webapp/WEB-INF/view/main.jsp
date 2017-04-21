@@ -191,19 +191,6 @@ a.button.plus {
 		$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
 		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0");
 		
-/* 		$("#addNewEvBtn").click(function() {
- 			movies.push({
-				movies_id : "movies" + movies.length,
-				name : "",
-				detail : "",
-				prove : "",
-				type : "书证"
-			});
-			$("#eviPageContainer_0").empty();
-			$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0"); 
-			addOneEv(0);
-		});
- */
 		$("#addEviSub").click(function() {
 			movieSeries.push({
 				id: movieSeries.length
@@ -217,6 +204,7 @@ a.button.plus {
 
 	});
 
+	//保存
 	function submit() {
 		$("centerForm").attr("action", "login/test");
 		$.ajax({
@@ -235,16 +223,8 @@ a.button.plus {
 		});
 	}
 
+	//预览
 	function preview() {
-		/*  		$.ajax({
-		 url : "previewtest",
-		 data : $("#centerForm").serialize(),
-		 type : "POST",
-		 success : function(r) {
-		 localStorage.setItem("preview", r);
-		 location.href="preview";
-		 }
-		 });  */
 		$.ajax({
 			url : "pre",
 			data : {"writModel":"${writModel}","data":$("#centerForm").serializeArray()},
@@ -254,7 +234,5 @@ a.button.plus {
 				$("#centerForm").submit();
 			}
 		});
-		//$("#centerForm").attr("action","preview");
-		//$("#centerForm").submit();
 	}
 </script>
