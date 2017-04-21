@@ -3,6 +3,7 @@ package main.java.generator.web.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +20,22 @@ public class MainController {
 	@Autowired
 	MainService mainService;
 
+	WritModel curWritModel = new WritModel();
 	@RequestMapping(value = "login/test")
-	public @ResponseBody int test(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("a") String a) {
+	public @ResponseBody int test(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("success");
-		System.out.println(a);
 		return 0;
+	}
+	
+	@RequestMapping(value = "pre")
+	public @ResponseBody WritModel previewtest(HttpServletRequest request, HttpServletResponse response,@Param("writModel")WritModel writModel) {
+		curWritModel.setAjjbxxb(writModel.getAjjbxxb());
+		return curWritModel;
 	}
 
 	@RequestMapping(value = "preview")
-	public @ResponseBody ModelAndView test(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("preview");
+	public @ResponseBody ModelAndView preview(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("preview", "writModel",curWritModel);
 		return mv;
 	}
 

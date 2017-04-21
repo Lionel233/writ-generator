@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
+<jsp:include page="util.jsp" flush="true" />
+
+
 <body>
-预览页面
+${writModel.ajjbxxb.wsmc}
 </body>
-</html>
+
+
+<script type="text/javascript">
+/*  	window.onload = function() {
+		var previewData = localStorage.getItem("preview");
+		$("#preview").val(previewData.facts);
+	}  */
+</script>

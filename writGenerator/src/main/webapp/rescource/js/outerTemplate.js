@@ -1,13 +1,13 @@
 var outerLayer = heredoc(function(){
 /*	<div class="form-group evi" id = "movieSeries_${id}"
-		style="border: 1px dotted black; width: 800px; margin-left: 60px; float: left">
+		style="border: 1px dotted black; width: 800px; margin-left: 80px;">
 		<div class="form-group">
 			<label for="manager" class="col-sm-4 control-label"> <select
 				id="" class="select2">
 			</select>提供证据
 			</label>
 			<div class="col-sm-2">
-				<a id="addNewEvBtn" class="button btn-md btn-green ajax">+</a>
+				<a id="addNewEvBtn" class="button plus btn-md btn-green ajax">+</a>
 			</div>
 		</div>
 		<div id="eviPageContainer_${id}"></div>
