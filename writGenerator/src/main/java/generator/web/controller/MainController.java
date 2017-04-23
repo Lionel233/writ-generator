@@ -2,9 +2,10 @@ package main.java.generator.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,12 @@ import main.java.generator.model.WritModel;
 import main.java.generator.service.MainService;
 import main.java.generator.utils.Result;
 
+@Scope("prototype")
 @Controller
 public class MainController {
 	@Autowired
 	MainService mainService;
-
-	WritModel curWritModel = new WritModel();
+	
 	@RequestMapping(value = "login/test")
 	public @ResponseBody int test(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("success");
@@ -28,20 +29,20 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "pre")
-	public @ResponseBody WritModel previewtest(HttpServletRequest request, HttpServletResponse response,@Param("writModel")WritModel writModel) {
-		curWritModel.setAjjbxxb(writModel.getAjjbxxb());
-		return curWritModel;
+	public @ResponseBody WritModel previewtest(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+		return (WritModel) session.getAttribute("writModel");
 	}
 
 	@RequestMapping(value = "preview")
 	public @ResponseBody ModelAndView preview(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView("preview", "writModel",curWritModel);
+		ModelAndView mv = new ModelAndView("preview", "writModel",request.getSession().getAttribute("writModel"));
 		return mv;
 	}
 
 	@RequestMapping(value = "searchCode")
 	public @ResponseBody boolean isExisted(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("code") String code) {
+			@RequestParam("code") String code) {	
 		System.out.println(code);
 		
 		Result result = mainService.isCaseExist(code);
@@ -60,7 +61,9 @@ public class MainController {
 		if(result.getCode() != 0){
 			System.out.println(result.getMessage());
 		}
-		return new ModelAndView("main", "writModel",(WritModel) result.getResult());
+		HttpSession session = request.getSession(true);
+		session.setAttribute("writModel", (WritModel)result.getResult());	
+		return new ModelAndView("main", "writModel",(WritModel)result.getResult());
 	}
 
 }
