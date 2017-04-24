@@ -5,7 +5,7 @@
 
 
 <body>
-${writModel.ajjbxxb.wsmc}
+${writModel.ajjbxxb.jbfy} ${writModel.ajjbxxb.jbfy}
 </body>
 
 
