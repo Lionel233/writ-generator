@@ -27,7 +27,7 @@
 						<h3 class="panel-title">请登录</h3>
 					</div>
 					<div class="panel-body">
-						<form id="loginForm" role="form" action="api/login" method="POST">
+						<form id="loginForm" role="form" action="/writGenerator/api/login" method="POST">
 							<fieldset>
 								<div class="form-group">
 									<input class="form-control" placeholder="账号" name="username"
