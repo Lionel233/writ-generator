@@ -39,6 +39,12 @@ public class MainController {
 		ModelAndView mv = new ModelAndView("preview", "writModel",request.getSession().getAttribute("writModel"));
 		return mv;
 	}
+	
+	@RequestMapping(value = "search")
+	public @ResponseBody ModelAndView search(HttpServletRequest request, HttpServletResponse response) {	
+		ModelAndView mv = new ModelAndView("search");
+		return mv;
+	}
 
 	@RequestMapping(value = "searchCode")
 	public @ResponseBody boolean isExisted(HttpServletRequest request, HttpServletResponse response,

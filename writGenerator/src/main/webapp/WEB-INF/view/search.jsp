@@ -21,7 +21,7 @@
 </style>
 <body>
 	<t:header/>
-	<form id="searchForm" action="api/codeRecord" method="post"
+	<form id="searchForm" action="codeRecord" method="post"
 		style="position: relative; margin: 230px;">
 		<input type="input" name="code" id="code"
 			class="form-control center-block" placeholder="输入案号">
@@ -38,7 +38,7 @@
 
 	function search() {
 		$.ajax({
-			url : "api/searchCode",
+			url : "searchCode",
 			data : {
 				"code" : $("#code").val()
 			},
