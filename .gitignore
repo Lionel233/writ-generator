@@ -5,3 +5,6 @@ writGenerator/WebContent
 writGenerator/.project
 writGenerator/src/main/webapp/WEB-INF/applicationContext.xml
 .DS_Store
+writGenerator/src/main/webapp/rescource/pages/
+writGenerator/src/main/webapp/rescource/index.html
+writGenerator/src/main/webapp/rescource/index2.html

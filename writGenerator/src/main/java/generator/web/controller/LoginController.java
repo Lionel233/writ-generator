@@ -7,20 +7,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.User;
+import main.java.generator.service.LoginService;
+import main.java.generator.utils.Result;
 
 @Controller
 public class LoginController {
+	@Autowired
+	LoginService loginService;
 	
 	@RequestMapping(value = "login")
 	public @ResponseBody ModelAndView login(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
-		if(username.equals("ball")){
-			User user = new User();
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		
+		Result result = loginService.login(user);
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+			return null;
+		}
+		
+		if(result.getResult() != null){
+			user = (User)result.getResult();
 			request.getSession().setAttribute("user", user);
 			ModelAndView mv = new ModelAndView("search");
 			return mv;
