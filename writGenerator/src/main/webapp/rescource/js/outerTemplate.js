@@ -32,7 +32,7 @@ var outerLayer = heredoc(function(){
 			}
 			
 			for(var i = 0;i < litigantList.length;i ++){
-				var content = litigantList[i].content;
+				var content = litigantList[i].dsrlb+" "+litigantList[i].xm;
 				if(exceptList.indexOf(content) >= 0){
 					continue;
 				}

@@ -114,9 +114,9 @@ a.button.plus {
 
 			<div class="row clearfix">
 				<div class="col-md-11 column">
-					<div class="form-group evi"
-						style="border: 1px dotted black; width: 800px; margin-left: 60px; float: left">
-						<div class="form-group">
+					<div class="form-group"
+						style="border: 1px dotted black; width: 800px; margin-left: 80px">
+						<div class="form-group" >
 							<label for="manager" class="col-sm-7 control-label"> <select
 								id="" class="select2">
 									<option value="法院">法院</option>
@@ -141,6 +141,10 @@ a.button.plus {
 					<a id="addExamSub" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
+			
+			<div>
+			<jsp:include page="questioning.jsp" flush="true" />
+			</div>
 
 
 			<div class="form-group">
@@ -164,7 +168,8 @@ a.button.plus {
 	var litigantList = [];
 	<c:forEach items="${writModel.litigantList}" var="litigant">
 		litigantList.push({
-			content: "${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}"
+			dsrlb: "${litigant.wsDsrb.dsrlb}",
+			xm: "${litigant.wsDsrb.xm}"
 		})
 	</c:forEach>
 
