@@ -34,7 +34,7 @@
 										autofocus>
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="密码" name="password"
+									<input class="form-control" placeholder="密码" name="password" id="password"
 										type="password" value="">
 								</div>
 								<c:if test="${!empty error}">
@@ -46,7 +46,7 @@
 									</label>
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
-								<a href="javascript:login()"
+								<a href="javascript:login()" id="loginBtn"
 									class="btn btn-lg btn-success btn-block" style="color: white">登录</a>
 							</fieldset>
 						</form>
@@ -70,5 +70,15 @@
 	function login() {
 		$("#loginForm").submit();
 	}
+	$(document).ready(function(){
+		
+		$("#password").keydown(function(event) {
+			if (event.which == "13") {
+				login();
+				return false;
+			}
+		});
+		
+	});
 </script>
 
