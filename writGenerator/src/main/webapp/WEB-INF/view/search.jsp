@@ -38,7 +38,7 @@
 
 	function search() {
 		$.ajax({
-			url : "searchCode",
+			url : "/writGenerator/api/searchCode",
 			data : {
 				"code" : $("#code").val()
 			},

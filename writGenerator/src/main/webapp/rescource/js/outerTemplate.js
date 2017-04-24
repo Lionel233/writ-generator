@@ -33,6 +33,8 @@ var outerLayer = heredoc(function(){
 			
 			for(var i = 0;i < litigantList.length;i ++){
 				var content = litigantList[i].dsrlb+" "+litigantList[i].xm;
+				console.log(content);
+				console.log("4324324");
 				if(exceptList.indexOf(content) >= 0){
 					continue;
 				}

@@ -170,7 +170,7 @@ a.button.plus {
 		litigantList.push({
 			dsrlb: "${litigant.wsDsrb.dsrlb}",
 			xm: "${litigant.wsDsrb.xm}"
-		})
+		});
 	</c:forEach>
 
 	var movies = [ {
