@@ -34,9 +34,9 @@ var examEvLayer = heredoc(function(){
 				examEvs[${id}].comment = $("#comment",$("#examEv_${id}")).val();
 			});
 			
-			initEvNameSelector();
+			initEvNameSelector(${id});
 			$("#evName",$("#examEv_${id}")).click(function(){
-				initEvNameSelector();
+				initEvNameSelector(${id});
 			});
 
 		
@@ -46,12 +46,12 @@ var examEvLayer = heredoc(function(){
 */
 });
 
-function initEvNameSelector(){
-	$("#evName",$("#examEv_${id}")).find('option').remove();
+function initEvNameSelector(evId){
+	$("#evName",$("#examEv_" + evId)).find('option').remove();
 	var evList = [];
 	var exceptList = [];
 	var allEvs = $(".allEv");
-	var excludeEvs = $(".evName",$("#examEv_${id}"));
+	var excludeEvs = $(".evName",$("#examEv_" + evId));
 	for (var i = 0;i < allEvs.length;i ++){
 		evList.push($(allEvs[i]).val());
 	}
@@ -65,6 +65,6 @@ function initEvNameSelector(){
 		if(exceptList.indexOf(content) >= 0){
 			continue;
 		}
-		$("#evName",$("#examEv_${id}")).append(new Option(content,content));
+		$("#evName",$("#examEv_" + evId)).append(new Option(content,content));
 	}
 }

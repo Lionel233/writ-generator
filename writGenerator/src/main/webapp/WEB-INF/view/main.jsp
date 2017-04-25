@@ -205,6 +205,7 @@ a.button.plus {
 			});
 			$("#argueContainer").empty();
 			$.tmpl("argueLayer", argue).appendTo("#argueContainer");
+
 		})
 
 	});
