@@ -1,5 +1,6 @@
 var outerLayer = heredoc(function(){
-/*	<div class="form-group evi" id = "movieSeries_${id}"
+/*	
+	<div class="form-group evi" id = "movieSeries_${id}"
 		style="border: 1px dotted black; width: 800px; margin-left: 80px;">
 		<div class="form-group">
 			<label for="manager" class="col-sm-4 control-label"> 
@@ -33,8 +34,7 @@ var outerLayer = heredoc(function(){
 			
 			for(var i = 0;i < litigantList.length;i ++){
 				var content = litigantList[i].dsrlb+" "+litigantList[i].xm;
-				console.log(content);
-				console.log("4324324");
+
 				if(exceptList.indexOf(content) >= 0){
 					continue;
 				}

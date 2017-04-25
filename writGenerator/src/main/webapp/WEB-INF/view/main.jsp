@@ -62,14 +62,12 @@ a.button.plus {
 
 		<form id="centerForm" action="login/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
-
 			<div class="row clearfix">
 				<div class="col-md-11 column" id="argueContainer"></div>
 				<div class="col-md-1 column" style="margin-top: 50px">
 					<a id="addArgue" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">查明事实</label>
 				<div class="col-sm-6">
@@ -86,43 +84,13 @@ a.button.plus {
 
 			<div class="row clearfix">
 				<div class="col-md-11 column">
-					<div class="form-group"
-						style="border: 1px dotted black; width: 800px; margin-left: 80px">
-						<div class="form-group">
-							<label for="manager" class="col-sm-7 control-label"> <select
-								id="" class="select2">
-									<option value="法院">法院</option>
-									<c:forEach items="${writModel.litigantList}" var="litigant">
-										<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb}
-											${litigant.wsDsrb.xm}</option>
-									</c:forEach>
-							</select>对 <select id="" class="select2">
-									<c:forEach items="${writModel.litigantList}" var="litigant">
-										<option value="${litigant.wsDsrb.dsrlb} ${litigant.wsDsrb.xm}">${litigant.wsDsrb.dsrlb}
-											${litigant.wsDsrb.xm}</option>
-									</c:forEach>
-							</select>提供证据的质证
-							</label> <input type="checkbox" name="affirm" value="予以确认">予以确认
-							<div class="col-sm-2">
-								<a id="addNewExamBtn" class="button plus btn-md btn-green ajax">+</a>
-							</div>
-						</div>
-					</div>
+					<div id="examContainer"></div>
+
 				</div>
 				<div class="col-md-1 column" style="margin-top: 20px">
 					<a id="addExamSub" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-
-			<div>
-				<jsp:include page="questioning.jsp" flush="true" />
-			</div>
-
-
-			<div>
-				<jsp:include page="argue.jsp" flush="true" />
-			</div>
-
 
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">判决结果</label>
@@ -169,7 +137,22 @@ a.button.plus {
 		id : 0,
 		selectorValue : ""
 	} ];
-
+	
+	var exams=[{
+		id:0,
+		name1:"",
+		name2:"",
+		confirmAll:false
+	}];
+	
+	var examEvs=[{
+		id:0,
+		name:"",
+		comment:"",
+		exam_id:0,
+		confirmed:true
+	}];
+	
 	var argue = [ {
 		id : 0,
 		argueSelector : "",
@@ -182,6 +165,11 @@ a.button.plus {
 		$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
 		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0");
 
+		$.template("examLayer", examLayer);
+		$.template("examEvLayer", examEvLayer);
+		$.tmpl("examLayer", exams).appendTo("#examContainer");
+		$.tmpl("examEvLayer", examEvs).appendTo("#examEvContainer_0");
+		
 		$("#addEviSub").click(function() {
 			movieSeries.push({
 				id : movieSeries.length,
@@ -193,7 +181,19 @@ a.button.plus {
 				showEvSeries(i);
 			}
 		});
-
+		
+		$("#addExamSub").click(function() {
+			exams.push({
+				id : movieSeries.length,
+				selectorValue : ""
+			});
+			$("#examContainer").empty();
+			$.tmpl("examLayer", exams).appendTo("#examContainer");
+			for (var i = 0; i < exams.length; i++) {
+				showExam(i);
+			}
+		});
+		
 		$.template("argueLayer", argueLayer);
 		$.tmpl("argueLayer", argue).appendTo("#argueContainer");
 
@@ -234,7 +234,6 @@ a.button.plus {
 		$.ajax({
 			url : "pre",
 			data : {
-				"writModel" : "${writModel}",
 				"data" : $("#centerForm").serializeArray()
 			},
 			type : "POST",

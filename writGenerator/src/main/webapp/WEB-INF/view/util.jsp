@@ -22,6 +22,8 @@
 <script type="text/javascript" src="<c:url value="/rescource/js/template.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/outerTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/argueTemplate.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/rescource/js/examTemplate.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/rescource/js/examEvTemplate.js" />" ></script>  
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 

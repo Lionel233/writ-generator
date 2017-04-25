@@ -23,6 +23,12 @@ public class LoginServiceImpl implements LoginService{
 		
 		Result result = new Result();
 		
+		if(user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword()
+				.isEmpty()){
+			result.setCode(103);
+			result.setMessage(Result.CODE_103);
+			result.setResult(null);
+		}
 		UserPoExample ex = new UserPoExample();
 		ex.createCriteria().andUsernameEqualTo(user.getUsername())
 			.andPasswordEqualTo(user.getPassword());

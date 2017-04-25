@@ -3,7 +3,8 @@ function heredoc(fn) {
 }
 
 var innerLayer = heredoc(function(){
-    /*    <div class="questioningPage" id="questioning_${id}" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
+/*    
+    <div class="questioningPage" id="questioning_${id}" style="width:80%;padding-top:10px;margin-left: 70px;margin-bottom:10px;border: 1px dotted black;">
 	<div class="form-group">
 		<label for="manager" class="col-sm-2 control-label">证据</label>
 		<div class="col-sm-1 div-inline">
