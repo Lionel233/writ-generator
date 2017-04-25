@@ -35,13 +35,15 @@ var argueLayer = heredoc(function(){
 					continue;
 				}
 				$("#argueSelector",$("#argue_${id}")).append(new Option(content,content));
-			}		
-			$("#argueSelector option:first",$("#argue_${id}")).attr('selected','selected');
+			}	
+			$("#argueSelector",$("#argue_${id}")).val(argue[${id}].argueSelector);
+			if($("#argueSelector",$("#argue_${id}")).val() === null){
+				$("#argueSelector option:first",$("#argue_${id}")).attr('selected','selected');
+			}
 
 			$("#arguement",$("#argue_${id}")).val("${arguement}");	
 		});
 		
 	</script>
-     </script>
      */
 });
