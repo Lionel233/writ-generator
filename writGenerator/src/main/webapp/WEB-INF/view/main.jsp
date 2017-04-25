@@ -37,32 +37,8 @@ a.button.plus {
 	<div class="container">
 		<div class="form-horizontal">
 			<div class="form-group">
-				<label for="centerName" class="col-sm-2 control-label">文书名称</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="wsmc"
-						value="${writModel.ajjbxxb.wsmc}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="centerName" class="col-sm-2 control-label">经办法院</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="jbfy"
-						value="${writModel.ajjbxxb.jbfy}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="centerName" class="col-sm-2 control-label">案号</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" name="ah"
-						value="${writModel.ajjbxxb.ah}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="centerName" class="col-sm-2 control-label">案件种类</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" name="ajzl"
-						value="${writModel.ajjbxxb.ajxz} ${writModel.ajjbxxb.spcx}">
-				</div>
+				<h3 align="center">${writModel.ajjbxxb.jbfy}
+					${writModel.ajjbxxb.wsmc} ${writModel.ajjbxxb.ah}</h3>
 			</div>
 			<div class="panel-group" style="width: 300px; margin-left: 100px">
 				<div class="panel panel-default">
@@ -86,18 +62,14 @@ a.button.plus {
 
 		<form id="centerForm" action="login/test" method="post"
 			enctype="multipart/form-data" class="form-horizontal">
-			<div class="form-group">
-				<label for="manager" class="col-sm-2 control-label">原告诉称</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="" placeholder="原告诉称">
+
+			<div class="row clearfix">
+				<div class="col-md-11 column" id="argueContainer"></div>
+				<div class="col-md-1 column" style="margin-top: 50px">
+					<a id="addArgue" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="manager" class="col-sm-2 control-label">被告辩称</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="" placeholder="被告辩称">
-				</div>
-			</div>
+
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">查明事实</label>
 				<div class="col-sm-6">
@@ -105,7 +77,7 @@ a.button.plus {
 				</div>
 			</div>
 
-		<div class="row clearfix">
+			<div class="row clearfix">
 				<div class="col-md-11 column" id="outerContainer"></div>
 				<div class="col-md-1 column" style="margin-top: 50px">
 					<a id="addEviSub" class="button plus btn-md btn-green ajax">+</a>
@@ -116,7 +88,7 @@ a.button.plus {
 				<div class="col-md-11 column">
 					<div class="form-group"
 						style="border: 1px dotted black; width: 800px; margin-left: 80px">
-						<div class="form-group" >
+						<div class="form-group">
 							<label for="manager" class="col-sm-7 control-label"> <select
 								id="" class="select2">
 									<option value="法院">法院</option>
@@ -141,9 +113,14 @@ a.button.plus {
 					<a id="addExamSub" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-			
+
 			<div>
-			<jsp:include page="questioning.jsp" flush="true" />
+				<jsp:include page="questioning.jsp" flush="true" />
+			</div>
+
+
+			<div>
+				<jsp:include page="argue.jsp" flush="true" />
 			</div>
 
 
@@ -167,18 +144,18 @@ a.button.plus {
 <script type="text/javascript">
 	var litigantList = [];
 	<c:forEach items="${writModel.litigantList}" var="litigant">
-		litigantList.push({
-			dsrlb: "${litigant.wsDsrb.dsrlb}",
-			xm: "${litigant.wsDsrb.xm}"
-		});
+	litigantList.push({
+		dsrlb : "${litigant.wsDsrb.dsrlb}",
+		xm : "${litigant.wsDsrb.xm}"
+	});
 	</c:forEach>
 
-	var questioning = [{
-		id:0,
-		dependable:true,
-		comment:""
-	}]
-	
+	var questioning = [ {
+		id : 0,
+		dependable : true,
+		comment : ""
+	} ]
+
 	var movies = [ {
 		id : 0,
 		name : "",
@@ -187,29 +164,49 @@ a.button.plus {
 		type : "书证",
 		movieSeries_id : 0
 	} ];
-	
-	var movieSeries = [{
+
+	var movieSeries = [ {
 		id : 0,
-		selectorValue:""
-	}];
+		selectorValue : ""
+	} ];
+
+	var argue = [ {
+		id : 0,
+		argueSelector : "",
+		argument : ""
+	} ]
 
 	$(document).ready(function() {
 		$.template("innerlayer", innerLayer);
 		$.template("outerLayer", outerLayer);
 		$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
 		$.tmpl("innerlayer", movies).appendTo("#eviPageContainer_0");
-		
+
 		$("#addEviSub").click(function() {
 			movieSeries.push({
-				id: movieSeries.length,
-				selectorValue:""
+				id : movieSeries.length,
+				selectorValue : ""
 			});
 			$("#outerContainer").empty();
-			$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer"); 
-			for(var i = 0;i < movieSeries.length;i ++){
+			$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
+			for (var i = 0; i < movieSeries.length; i++) {
 				showEvSeries(i);
 			}
 		});
+
+		$.template("argueLayer", argueLayer);
+		$.tmpl("argueLayer", argue).appendTo("#argueContainer");
+
+		$("#addArgue").click(function() {
+			argue.push({
+				id : argue.length,
+				argueSelector : "",
+				argument : ""
+			});
+			$("#argueContainer").empty();
+			$.tmpl("argueLayer", argue).appendTo("#argueContainer");
+
+		})
 
 	});
 
@@ -236,7 +233,10 @@ a.button.plus {
 	function preview() {
 		$.ajax({
 			url : "pre",
-			data : {"writModel":"${writModel}","data":$("#centerForm").serializeArray()},
+			data : {
+				"writModel" : "${writModel}",
+				"data" : $("#centerForm").serializeArray()
+			},
 			type : "POST",
 			success : function(r) {
 				$("#centerForm").attr("action", "preview");
