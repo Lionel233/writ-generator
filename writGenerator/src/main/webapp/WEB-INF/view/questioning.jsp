@@ -4,9 +4,7 @@
 
 <body>
 	<div class="form-group">
-
 		<label for="manager" class="col-sm-2 control-label">证据</label>
-
 		<div class="col-sm-1 div-inline">
 			<select id="selectTeachPlan" class="select2">
 				<option value="书证">书证</option>
@@ -28,8 +26,5 @@
 		<div class="col-sm-2">
 			<input type="text" class="form-control">
 		</div>
-		
-
-
 	</div>
 </body>

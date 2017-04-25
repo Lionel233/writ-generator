@@ -173,6 +173,12 @@ a.button.plus {
 		});
 	</c:forEach>
 
+	var questioning = [{
+		id:0,
+		dependable:true,
+		comment:""
+	}]
+	
 	var movies = [ {
 		id : 0,
 		name : "",
