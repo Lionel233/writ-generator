@@ -2,6 +2,7 @@ package main.java.generator.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import main.java.generator.po.EvidencePo;
 import main.java.generator.po.WsAjjbxxb;
@@ -18,18 +19,12 @@ public class WritModel implements Serializable {
 	 * 当事人列表
 	 */
 	private ArrayList<Litigant> litigantList = new ArrayList<Litigant>();
-	/**
-	 * 原告诉称
-	 */
-	private String accuserClaims;
-	/**
-	 * 被告辩称
-	 */
-	private String defendantArgues;
+
+	private List<Argue> argueList = new ArrayList<Argue>();
 	/**
 	 * 查明事实
 	 */
-	private String facts;
+	private List<String> facts;
 
 	/**
 	 * 原告证据列表
@@ -61,27 +56,19 @@ public class WritModel implements Serializable {
 		this.litigantList = litigantList;
 	}
 
-	public String getAccuserClaims() {
-		return accuserClaims;
+	public List<Argue> getArgueList() {
+		return argueList;
 	}
 
-	public void setAccuserClaims(String accuserClaims) {
-		this.accuserClaims = accuserClaims;
+	public void setArgueList(List<Argue> argueList) {
+		this.argueList = argueList;
 	}
 
-	public String getDefendantArgues() {
-		return defendantArgues;
-	}
-
-	public void setDefendantArgues(String defendantArgues) {
-		this.defendantArgues = defendantArgues;
-	}
-
-	public String getFacts() {
+	public List<String> getFacts() {
 		return facts;
 	}
 
-	public void setFacts(String facts) {
+	public void setFacts(List<String> facts) {
 		this.facts = facts;
 	}
 
