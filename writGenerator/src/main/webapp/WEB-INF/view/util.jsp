@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="<c:url value="/rescource/css/main.css" />" />
 <link rel="stylesheet" href="<c:url value="/rescource/css/style.css" />" />
+<link rel="stylesheet" href="<c:url value="/rescource/css/bootstrap-table.css" />" />
+<link rel="stylesheet" href="<c:url value="/rescource/css/bootstrap-table-extension.css" />" />
 
  
 <script type="text/javascript" src="<c:url value="/rescource/select2/js/select2.full.js" />" ></script>  
@@ -19,11 +21,15 @@
 <script type="text/javascript" src="<c:url value="/rescource/select2/js/select2.min.js" />" ></script>  
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="<c:url value="/rescource/js/bootstrap-table.js" />" ></script> 
+<script type="text/javascript" src="<c:url value="/rescource/js/bootstrap-table-zh-CN.js" />" ></script> 
+<script type="text/javascript" src="<c:url value="/rescource/js/bootstrap-table-extension.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/template.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/outerTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/argueTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/examTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/rescource/js/examEvTemplate.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/rescource/js/factTemplate.js" />" ></script>  
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 

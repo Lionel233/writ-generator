@@ -68,11 +68,19 @@ a.button.plus {
 					<a id="addArgue" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="manager" class="col-sm-2 control-label">查明事实</label>
-				<div class="col-sm-6">
+
+			<div class="row clearfix"
+				style="border: 1px dotted black; width: 800px; margin-left: 80px;">
+				<div class="col-md-2 column">
+					<label for="manager" class="control-label">查明事实</label>
+				</div>
+				<div class="col-md-9 column" id="factContainer">
 					<input type="text" class="form-control" id="" placeholder="查明事实">
 				</div>
+				<div class="col-md-1 column">
+					<a id="addFact" class="button plus btn-md btn-green ajax">+</a>
+				</div>
+
 			</div>
 
 			<div class="row clearfix">
@@ -137,26 +145,31 @@ a.button.plus {
 		id : 0,
 		selectorValue : ""
 	} ];
-	
-	var exams=[{
-		id:0,
-		name1:"",
-		name2:"",
-		confirmAll:false
-	}];
-	
-	var examEvs=[{
-		id:0,
-		name:"",
-		comment:"",
-		exam_id:0,
-		confirmed:true
-	}];
-	
+
+	var exams = [ {
+		id : 0,
+		name1 : "",
+		name2 : "",
+		confirmAll : false
+	} ];
+
+	var examEvs = [ {
+		id : 0,
+		name : "",
+		comment : "",
+		exam_id : 0,
+		confirmed : true
+	} ];
+
 	var argue = [ {
 		id : 0,
 		argueSelector : "",
 		argument : ""
+	} ]
+
+	var fact = [ {
+		id : 0,
+		fact : ""
 	} ]
 
 	$(document).ready(function() {
@@ -169,7 +182,7 @@ a.button.plus {
 		$.template("examEvLayer", examEvLayer);
 		$.tmpl("examLayer", exams).appendTo("#examContainer");
 		$.tmpl("examEvLayer", examEvs).appendTo("#examEvContainer_0");
-		
+
 		$("#addEviSub").click(function() {
 			movieSeries.push({
 				id : movieSeries.length,
@@ -181,7 +194,7 @@ a.button.plus {
 				showEvSeries(i);
 			}
 		});
-		
+
 		$("#addExamSub").click(function() {
 			exams.push({
 				id : movieSeries.length,
@@ -193,7 +206,7 @@ a.button.plus {
 				showExam(i);
 			}
 		});
-		
+
 		$.template("argueLayer", argueLayer);
 		$.tmpl("argueLayer", argue).appendTo("#argueContainer");
 
@@ -206,6 +219,17 @@ a.button.plus {
 			$("#argueContainer").empty();
 			$.tmpl("argueLayer", argue).appendTo("#argueContainer");
 
+		})
+
+		$.template("factLayer", factLayer);
+		$.tmpl("factLayer", fact).appendTo("factContainer");
+		$("#addFact").click(function() {
+			fact.push({
+				id : fact.length,
+				fact : ""
+			});
+			$("#factContainer").empty();
+			$.tmpl("factLayer", fact).appendTo("#factContainer");
 		})
 
 	});
