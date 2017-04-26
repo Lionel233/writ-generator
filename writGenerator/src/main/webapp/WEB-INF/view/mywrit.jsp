@@ -8,16 +8,11 @@
 <body>
 	<t:header currentModule="我的文书" />
 	<div class="container">
-		<table data-toggle="table" data-height="246" data-pagination="true">
+		<table data-toggle="table" data-pagination="true" data-url="getWritList">
 			<thead>
 				<tr>
-					<th data-field="state" data-checkbox="true"></th>
-					<th data-field="id" data-align="right">Item ID</th>
-					<th data-field="name" data-align="center">Item Name</th>
-					<th data-field="price" data-align="">Item Price</th>
-					<th data-width=11% data-field="operateFormatter"
-						data-formatter="operateFormatter">操作</th>
-
+					<th data-width="80" data-formatter="operateFormatter">文书</th>
+					<th data-width="20" data-field="date" data-align="">编辑日期</th>
 				</tr>
 			</thead>
 		</table>
@@ -26,7 +21,6 @@
 
 <script type="text/javascript">
 	function operateFormatter(value, row, index) {
-		return [ '<button class="btn btn-primary resend">重新发送邀请</button>' ]
-				.join('');
+		return '<a class="ml10" href="showWrit?id=' + row.id +'">'+row.name+'</a>';
 	}
 </script>
