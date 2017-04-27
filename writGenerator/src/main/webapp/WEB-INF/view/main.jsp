@@ -125,6 +125,7 @@ a.button.plus {
 		xm : "${litigant.wsDsrb.xm}"
 	});
 	</c:forEach>
+	var ajxh = ${writModel.ajjbxxb.ajxh}
 </script>
 
 <script type="text/javascript" src="/writGenerator/resource/js/main.js"></script>

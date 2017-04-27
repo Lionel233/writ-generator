@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.WritModel;
 import main.java.generator.service.PreviewService;
+import main.java.generator.utils.Result;
 import main.java.generator.utils.ServletUtils;
 
 @Controller
@@ -24,6 +25,12 @@ public class PreviewController {
 	@Autowired
 	PreviewService previewService;
 	
+	/**
+	 * 保存失败返回-1
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "save")
 	public @ResponseBody int save(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -32,6 +39,12 @@ public class PreviewController {
 			param = ServletUtils.getParametersFromQueryString(IOUtils.toString(request.getInputStream(), "utf-8"));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		}
+		
+		Result result = previewService.save(param);
+		if (result.getCode() != 0) {
+			System.out.println(result.getMessage());
+			return -1;
 		}
 		
 		return 0;

@@ -1,9 +1,3 @@
-var questioning = [ {
-	id : 0,
-	dependable : true,
-	comment : ""
-} ]
-
 var movies = [ {
 	id : 0,
 	name : "",
@@ -112,12 +106,13 @@ function submit() {
     $.ajax({
         url: $("#centerForm").attr("action"),
         data: {
-            movies: JSON.stringify(movies),
-            movieSeries: JSON.stringify(movieSeries),
+        	ajxh: ajxh,
+            evs: JSON.stringify(movies),
+            evSeries: JSON.stringify(movieSeries),
             exams: JSON.stringify(exams),
             examEvs: JSON.stringify(examEvs),
-            argue: JSON.stringify(argue),
-            fact: JSON.stringify(fact)
+            argues: JSON.stringify(argue),
+            facts: JSON.stringify(fact)
         },
         type : "POST",
         success : function(r) {

@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.generator.po.EvidencePo;
+import main.java.generator.po.Argue;
+import main.java.generator.po.Evidence;
 import main.java.generator.po.WsAjjbxxb;
 
 public class WritModel implements Serializable {
@@ -29,7 +30,7 @@ public class WritModel implements Serializable {
 	/**
 	 * 原告证据列表
 	 */
-	private ArrayList<EvidencePo> vlist = new ArrayList<EvidencePo>();
+	private ArrayList<Evidence> vlist = new ArrayList<Evidence>();
 
 	/**
 	 * 判决结果
@@ -72,11 +73,11 @@ public class WritModel implements Serializable {
 		this.facts = facts;
 	}
 
-	public ArrayList<EvidencePo> getVlist() {
+	public ArrayList<Evidence> getVlist() {
 		return vlist;
 	}
 
-	public void setVlist(ArrayList<EvidencePo> vlist) {
+	public void setVlist(ArrayList<Evidence> vlist) {
 		this.vlist = vlist;
 	}
 
