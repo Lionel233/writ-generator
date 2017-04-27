@@ -7,15 +7,15 @@
 
 <!-- MetisMenu CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/rescource/vendor/metisMenu/metisMenu.min.css" />" />
+	href="<c:url value="/resource/vendor/metisMenu/metisMenu.min.css" />" />
 
 <!-- Custom CSS -->
 <link rel="stylesheet"
-	href="<c:url value="/rescource/sb_dist/css/sb-admin-2.css" />" />
+	href="<c:url value="/resource/sb_dist/css/sb-admin-2.css" />" />
 
 <!-- Custom Fonts -->
 <link rel="stylesheet"
-	href="<c:url value="/rescource/vendor/font-awesome/css/font-awesome.min.css" />" />
+	href="<c:url value="/resource/vendor/font-awesome/css/font-awesome.min.css" />" />
 
 <body>
 	<t:header currentModule="登录" />
@@ -58,11 +58,11 @@
 
 	<!-- Metis Menu Plugin JavaScript -->
 	<script type="text/javascript"
-		src="<c:url value="/rescource/vendor/metisMenu/metisMenu.min.js" />"></script>
+		src="<c:url value="/resource/vendor/metisMenu/metisMenu.min.js" />"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script type="text/javascript"
-		src="<c:url value="/rescource/sb_dist/js/sb-admin-2.js" />"></script>
+		src="<c:url value="/resource/sb_dist/js/sb-admin-2.js" />"></script>
 
 </body>
 
