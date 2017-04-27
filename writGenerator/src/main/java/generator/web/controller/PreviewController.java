@@ -1,9 +1,13 @@
 package main.java.generator.web.controller;
 
+import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.WritModel;
 import main.java.generator.service.PreviewService;
+import main.java.generator.utils.ServletUtils;
 
 @Controller
 public class PreviewController {
@@ -21,7 +26,14 @@ public class PreviewController {
 	
 	@RequestMapping(value = "save")
 	public @ResponseBody int save(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("successfully saved");
+		
+		Map<String, String> param = null;
+		try {
+			param = ServletUtils.getParametersFromQueryString(IOUtils.toString(request.getInputStream(), "utf-8"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
 		return 0;
 	}
 	
