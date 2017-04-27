@@ -5,6 +5,12 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ page import="main.java.generator.model.WritModel"%>
 <jsp:include page="util.jsp" flush="true" />
+<%@ page import="main.java.generator.po.Law" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
+
+
 <style>
 .main-form .form-action {
 	text-align: center;
@@ -40,6 +46,7 @@ a.button.plus {
 				<h3 align="center">${writModel.ajjbxxb.jbfy}
 					${writModel.ajjbxxb.wsmc} ${writModel.ajjbxxb.ah}</h3>
 			</div>
+			<hr/>
 			<div class="panel-group" style="width: 300px; margin-left: 100px">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -59,29 +66,32 @@ a.button.plus {
 				</div>
 			</div>
 		</div>
+		<hr/>
 
-		<form id="centerForm" method="post"
-			enctype="multipart/form-data" class="form-horizontal">
+		<form id="centerForm" method="post" enctype="multipart/form-data"
+			class="form-horizontal">
 			<div class="row clearfix">
 				<div class="col-md-11 column" id="argueContainer"></div>
 				<div class="col-md-1 column" style="margin-top: 50px">
 					<a id="addArgue" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
+			
+			<hr/>
 
 			<div class="row clearfix"
 				style="border: 1px dotted black; width: 800px; margin-left: 80px;">
 				<div class="col-md-2 column">
 					<label for="manager" class="control-label">查明事实</label>
 				</div>
-				<div class="col-md-9 column" id="factContainer">
-					<input type="text" class="form-control" id="" placeholder="查明事实">
-				</div>
+				<div class="col-md-9 column" id="factContainer"></div>
 				<div class="col-md-1 column">
 					<a id="addFact" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 
 			</div>
+			
+			<hr/>
 
 			<div class="row clearfix">
 				<div class="col-md-11 column" id="outerContainer"></div>
@@ -89,6 +99,8 @@ a.button.plus {
 					<a id="addEviSub" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
+			
+			<hr/>
 
 			<div class="row clearfix">
 				<div class="col-md-11 column">
@@ -99,11 +111,24 @@ a.button.plus {
 					<a id="addExamSub" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
-
+			
+			<hr/>
+			
 			<div class="form-group">
 				<label for="manager" class="col-sm-2 control-label">判决结果</label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="4" id="" placeholder="判决结果"></textarea>
+				</div>
+			</div>
+			
+			<hr/>
+			
+			<div class="row clearfix">
+				<div class="col-md-11 column">
+					<div id="lawContainer"></div>
+				</div>
+				<div class="col-md-1 column" style="margin-top: 20px">
+					<a id="addLaw" class="button plus btn-md btn-green ajax">+</a>
 				</div>
 			</div>
 		</form>
@@ -113,6 +138,8 @@ a.button.plus {
 				href="javascript:preview()">预览</a> <a id="submitBtn"
 				class="button btn-md btn-green ajax" href="javascript:submit()">保存</a>
 		</div>
+		
+		<hr/>
 	</div>
 
 </body>
@@ -125,7 +152,16 @@ a.button.plus {
 		xm : "${litigant.wsDsrb.xm}"
 	});
 	</c:forEach>
-	var ajxh = ${writModel.ajjbxxb.ajxh}
+	var ajxh = ${writModel.ajjbxxb.ajxh};
+	
+
+	var lawList=[];
+	<c:forEach items="${laws}" var="law">
+	lawList.push({
+		id : "${law.id}",
+		name : "${law.name}"
+	});
+	</c:forEach>
 </script>
 
 <script type="text/javascript" src="/writGenerator/resource/js/main.js"></script>

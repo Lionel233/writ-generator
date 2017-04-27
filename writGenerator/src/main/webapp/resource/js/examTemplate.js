@@ -1,7 +1,7 @@
 var examLayer = heredoc(function(){
 /*	
 	<div class="form-group" id = "exam_${id}"
-		style="border: 1px dotted black; width: 800px; margin-left: 80px">
+		style="width: 800px; margin-left: 80px">
 			<div class="row">
 				
 				<label for="manager" class="col-sm-7 control-label"> 

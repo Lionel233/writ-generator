@@ -2,6 +2,7 @@ package main.java.generator.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.Data;
 import main.java.generator.model.WritModel;
+import main.java.generator.po.Law;
+import main.java.generator.service.LawService;
 import main.java.generator.service.MainService;
 import main.java.generator.utils.Result;
 
@@ -24,6 +27,8 @@ import main.java.generator.utils.Result;
 public class MainController {
 	@Autowired
 	MainService mainService;
+	@Autowired
+	LawService lawService;
 
 	@RequestMapping(value = "showWrit")
 	public @ResponseBody ModelAndView showWrit(HttpServletRequest request, HttpServletResponse response,
@@ -62,7 +67,14 @@ public class MainController {
 		}
 		HttpSession session = request.getSession(true);
 		session.setAttribute("writModel", (WritModel) result.getResult());
-		return new ModelAndView("main", "writModel", (WritModel) result.getResult());
+		@SuppressWarnings("unchecked")
+		List<Law> laws = (List<Law>)lawService.getAllLaws().getResult();
+		session.setAttribute("laws",laws);
+		
+		ModelAndView mv = new ModelAndView("main");
+		mv.getModelMap().addAttribute("writModel", (WritModel) result.getResult());
+		mv.getModelMap().addAttribute("laws",laws);
+		return mv;
 	}
 	
 	@RequestMapping(value="mywrits")

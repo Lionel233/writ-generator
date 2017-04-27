@@ -1,6 +1,6 @@
 var argueLayer = heredoc(function(){
     /*	
-     <div class="arguePage" id="argue_${id}" style="border: 1px dotted black; width: 800px; margin-left: 80px;">
+     <div class="arguePage" id="argue_${id}" style="width: 800px; margin-left: 80px;">
 		<div class="form-group">
 			<div class="col-sm-3">
 				<select id="argueSelector" class="select2 argueSelector">

@@ -31,6 +31,7 @@
 <script type="text/javascript" src="<c:url value="/resource/js/examTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/resource/js/examEvTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/resource/js/factTemplate.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/resource/js/lawTemplate.js" />" ></script>  
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
