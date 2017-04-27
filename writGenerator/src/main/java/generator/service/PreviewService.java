@@ -12,4 +12,6 @@ public interface PreviewService {
 	
 	public Result saveToWritModel(Map<String, String> param,WritModel writModel);
 
+	public Result readToWritModel(WritModel writModel);
+	
 }

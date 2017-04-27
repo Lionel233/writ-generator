@@ -20,12 +20,18 @@ import main.java.generator.dao.ExamSubmitterMapper;
 import main.java.generator.dao.FactMapper;
 import main.java.generator.model.WritModel;
 import main.java.generator.po.Argue;
+import main.java.generator.po.ArgueExample;
 import main.java.generator.po.Edit;
 import main.java.generator.po.EvSubmitter;
+import main.java.generator.po.EvSubmitterExample;
 import main.java.generator.po.Evidence;
+import main.java.generator.po.EvidenceExample;
 import main.java.generator.po.ExamEv;
+import main.java.generator.po.ExamEvExample;
 import main.java.generator.po.ExamSubmitter;
+import main.java.generator.po.ExamSubmitterExample;
 import main.java.generator.po.Fact;
+import main.java.generator.po.FactExample;
 import main.java.generator.po.User;
 import main.java.generator.service.PreviewService;
 import main.java.generator.utils.Result;
@@ -47,6 +53,8 @@ public class PreviewServiceImpl implements PreviewService{
 	FactMapper factMapper;
 	@Autowired
 	EditMapper editMapper;
+	
+	
 
 	@Override
 	public Result save(Map<String, String> param,User currentUser) {
@@ -225,6 +233,48 @@ public class PreviewServiceImpl implements PreviewService{
 		
 		result.setCode(0);
 		result.setMessage(Result.CODE_0);
+		return result;
+	}
+
+	@Override
+	public Result readToWritModel(WritModel writModel) {
+		Result result = new Result();
+		
+		int ajxh = writModel.getAjjbxxb().getAjxh();
+		
+		ArgueExample argueEx = new ArgueExample();
+		argueEx.createCriteria().andAjxhEqualTo(ajxh);
+		List<Argue> argueList = argueMapper.selectByExample(argueEx);
+		writModel.setArgueList(argueList);
+		
+		FactExample factEx = new FactExample();
+		factEx.createCriteria().andAjxhEqualTo(ajxh);
+		List<Fact> factList = factMapper.selectByExample(factEx);
+		writModel.setFacts(factList);
+		
+		EvSubmitterExample  evSubmitterEx = new EvSubmitterExample();
+		evSubmitterEx.createCriteria().andAjxhEqualTo(ajxh);
+		List<EvSubmitter> evSubmitterList = evSubmitterMapper.selectByExample(evSubmitterEx);
+		writModel.setEvSubmitterList(evSubmitterList);
+		
+		EvidenceExample evEx = new EvidenceExample();
+		evEx.createCriteria().andAjxhEqualTo(ajxh);
+		List<Evidence> evList = evidenceMapper.selectByExample(evEx);
+		writModel.setVlist(evList);
+		
+		ExamEvExample examEv = new ExamEvExample();
+		examEv.createCriteria().andAjxhEqualTo(ajxh);
+		List<ExamEv> examEvList = examEvMapper.selectByExample(examEv);
+		writModel.setExamEvList(examEvList);
+		
+		ExamSubmitterExample examSubmitterEx = new ExamSubmitterExample();
+		examSubmitterEx.createCriteria().andAjxhEqualTo(ajxh);
+		List<ExamSubmitter> examSubList = examSubmitterMapper.selectByExample(examSubmitterEx);
+		writModel.setExamSubmitterList(examSubList);
+
+		result.setCode(0);
+		result.setMessage(Result.CODE_0);
+		
 		return result;
 	}
 

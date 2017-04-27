@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import main.java.generator.model.WritModel;
 import main.java.generator.po.User;
 import main.java.generator.service.PreviewService;
+import main.java.generator.service.SearchService;
 import main.java.generator.utils.Result;
 import main.java.generator.utils.ServletUtils;
 
@@ -26,6 +27,9 @@ public class PreviewController {
 
 	@Autowired
 	PreviewService previewService;
+	@Autowired
+	SearchService searchService;
+	
 	
 	/**
 	 * 保存失败返回-1
@@ -76,8 +80,17 @@ public class PreviewController {
 	
 	@RequestMapping(value = "showWrit")
 	public @ResponseBody ModelAndView showWrit(HttpServletRequest request, HttpServletResponse response,
-			@Param("id") int id) {
-		ModelAndView mv = new ModelAndView("preview", "writModel", null);
+			@Param("ajxh") int ajxh) {
+		Result result = searchService.getCaseRecord(String.valueOf(ajxh));
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+		}
+		WritModel writModel = (WritModel)result.getResult();
+		result =  previewService.readToWritModel(writModel);
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+		}
+		ModelAndView mv = new ModelAndView("preview", "writModel", writModel);
 		return mv;
 	}
 }

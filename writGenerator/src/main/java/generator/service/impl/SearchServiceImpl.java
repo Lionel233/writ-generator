@@ -33,6 +33,8 @@ public class SearchServiceImpl implements SearchService{
 	WsDsrQzcsPoMapper wsDsrQzcsMapper;
 	@Autowired
 	WsAjjbxxbMapper wsAjjbxxbMapper;
+	
+	
 
 	@Override
 	public Result isCaseExist(String code) {

@@ -38,7 +38,7 @@ public class WritModel implements Serializable {
 	/**
 	 * 原告证据列表
 	 */
-	private ArrayList<Evidence> vlist = new ArrayList<Evidence>();
+	private List<Evidence> vlist = new ArrayList<Evidence>();
 
 	/**
 	 * 判决结果
@@ -81,11 +81,11 @@ public class WritModel implements Serializable {
 		this.facts = facts;
 	}
 
-	public ArrayList<Evidence> getVlist() {
+	public List<Evidence> getVlist() {
 		return vlist;
 	}
 
-	public void setVlist(ArrayList<Evidence> vlist) {
+	public void setVlist(List<Evidence> vlist) {
 		this.vlist = vlist;
 	}
 
