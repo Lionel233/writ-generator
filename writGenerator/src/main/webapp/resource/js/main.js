@@ -131,9 +131,15 @@ function submit() {
 function preview() {
 	$.ajax({
 		url : "pre",
-		data : {
-			"data" : $("#centerForm").serializeArray()
-		},
+        data: {
+        	ajxh: ajxh,
+            evs: JSON.stringify(movies),
+            evSeries: JSON.stringify(movieSeries),
+            exams: JSON.stringify(exams),
+            examEvs: JSON.stringify(examEvs),
+            argues: JSON.stringify(argue),
+            facts: JSON.stringify(fact)
+        },
 		type : "POST",
 		success : function(r) {
 			$("#centerForm").attr("action", "preview");

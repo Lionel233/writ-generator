@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.User;
+import main.java.generator.service.LawService;
 import main.java.generator.service.LoginService;
-import main.java.generator.service.impl.LawGenerateService;
 import main.java.generator.utils.Result;
 
 @Controller
@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	@Autowired
-	LawGenerateService lawGenerateService;
+	LawService lawService;
 	
 	@RequestMapping(value = "login")
 	public @ResponseBody ModelAndView login(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
@@ -31,7 +31,7 @@ public class LoginController {
 		user.setUsername(username);
 		user.setPassword(password);
 		
-		//lawGenerateService.generateLaw();
+		//lawService.generateLaw();
 		
 		Result result = loginService.login(user);
 		if(result.getCode() != 0){

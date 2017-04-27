@@ -50,22 +50,16 @@ public class PreviewController {
 		return 0;
 	}
 	
-	/**
-	 * 返回预览页面并向页面中加入writModel
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value = "getWrit")
-	public @ResponseBody int getWrit(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("getWrit called");
-		return 0;
-	}
-	
 	@RequestMapping(value = "pre")
-	public @ResponseBody WritModel previewtest(HttpServletRequest request, HttpServletResponse response) {
+	public void previewtest(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(true);
-		return (WritModel) session.getAttribute("writModel");
+		Map<String, String> param = null;
+		try {
+			param = ServletUtils.getParametersFromQueryString(IOUtils.toString(request.getInputStream(), "utf-8"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		session.setAttribute("writMap", param);
 	}
 
 	@RequestMapping(value = "preview")

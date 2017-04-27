@@ -90,4 +90,6 @@ public interface LawContentMapper {
 	 * @mbg.generated  Wed Apr 26 20:11:08 CST 2017
 	 */
 	int updateByPrimaryKey(LawContent record);
+	
+	int selectMaxItem(String lawId);
 }

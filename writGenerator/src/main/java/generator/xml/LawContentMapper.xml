@@ -384,4 +384,8 @@
       lawId = #{lawid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectMaxItem" parameterType="java.lang.String" resultMap="java.lang.Long">
+		select max(item) from lawContent where lawId = #{lawId}
+  </select>
 </mapper>
