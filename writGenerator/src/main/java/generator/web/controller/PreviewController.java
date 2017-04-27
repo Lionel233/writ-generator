@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.WritModel;
+import main.java.generator.po.User;
 import main.java.generator.service.PreviewService;
+import main.java.generator.service.SearchService;
 import main.java.generator.utils.Result;
 import main.java.generator.utils.ServletUtils;
 
@@ -24,6 +27,9 @@ public class PreviewController {
 
 	@Autowired
 	PreviewService previewService;
+	@Autowired
+	SearchService searchService;
+	
 	
 	/**
 	 * 保存失败返回-1
@@ -41,7 +47,8 @@ public class PreviewController {
 			throw new RuntimeException(e);
 		}
 		
-		Result result = previewService.save(param);
+		User user = (User)request.getSession().getAttribute("user");
+		Result result = previewService.save(param,user);
 		if (result.getCode() != 0) {
 			System.out.println(result.getMessage());
 			return -1;
@@ -59,12 +66,31 @@ public class PreviewController {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		session.setAttribute("writMap", param);
+		
+		WritModel writModel = (WritModel)session.getAttribute("writModel");
+		previewService.saveToWritModel(param, writModel);
+		session.setAttribute("writModel", writModel);
 	}
 
 	@RequestMapping(value = "preview")
 	public @ResponseBody ModelAndView preview(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("preview", "writModel", request.getSession().getAttribute("writModel"));
+		return mv;
+	}
+	
+	@RequestMapping(value = "showWrit")
+	public @ResponseBody ModelAndView showWrit(HttpServletRequest request, HttpServletResponse response,
+			@Param("ajxh") int ajxh) {
+		Result result = searchService.getCaseRecord(String.valueOf(ajxh));
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+		}
+		WritModel writModel = (WritModel)result.getResult();
+		result =  previewService.readToWritModel(writModel);
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+		}
+		ModelAndView mv = new ModelAndView("preview", "writModel", writModel);
 		return mv;
 	}
 }

@@ -16,6 +16,8 @@ public class Result {
 	
 	public static final String CODE_201 = "case code is not provided";
 	public static final String CODE_202 = "case format is wrong";
+	
+	public static final String CODE_303 = "Permission denied ";
 
 	public Result() {
 		super();

@@ -1,6 +1,7 @@
 package main.java.generator.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,15 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import main.java.generator.model.WritEdit;
 import main.java.generator.po.User;
 import main.java.generator.service.LawService;
-import main.java.generator.service.LoginService;
+import main.java.generator.service.UserService;
 import main.java.generator.utils.Result;
 
 @Controller
-public class LoginController {
+public class UserController {
 	@Autowired
-	LoginService loginService;
+	UserService userService;
 	@Autowired
 	LawService lawService;
 	
@@ -33,7 +35,7 @@ public class LoginController {
 		
 		//lawService.generateLaw();
 		
-		Result result = loginService.login(user);
+		Result result = userService.login(user);
 		if(result.getCode() != 0){
 			System.out.println(result.getMessage());
 			return null;
@@ -48,6 +50,23 @@ public class LoginController {
 			ModelAndView mv = new ModelAndView("login","error","yes");
 			return mv;
 		}
+	}
+	
+	@RequestMapping(value = "getWritList")
+	public @ResponseBody List<WritEdit> getWritList(HttpServletRequest request, HttpServletResponse response) {
+		
+		Result result = userService.login((User)request.getSession().getAttribute("user"));
+		if(result.getCode() != 0){
+			System.out.println(result.getMessage());
+			return null;
+		}
+		return (List<WritEdit>)result.getResult();
+	}
+	
+	@RequestMapping(value="mywrits")
+	public @ResponseBody ModelAndView getWrits(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
+		ModelAndView mv = new ModelAndView("mywrit");
+		return mv;
 	}
 
 }

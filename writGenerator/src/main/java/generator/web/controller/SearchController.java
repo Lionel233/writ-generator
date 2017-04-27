@@ -2,6 +2,7 @@ package main.java.generator.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import main.java.generator.model.WritModel;
 import main.java.generator.service.SearchService;
 import main.java.generator.utils.Result;
 
@@ -35,6 +37,19 @@ public class SearchController {
 			return false;
 		}
 		return (boolean) result.getResult();
+	}
+	
+	@RequestMapping(value = "codeRecord")
+	public @ResponseBody ModelAndView getCodeRecord(HttpServletRequest request, HttpServletResponse response) {
+		String code = request.getParameter("code");
+
+		Result result = searchService.getCaseRecord(code);
+		if (result.getCode() != 0) {
+			System.out.println(result.getMessage());
+		}
+		HttpSession session = request.getSession(true);
+		session.setAttribute("writModel", (WritModel) result.getResult());
+		return new ModelAndView("main", "writModel", (WritModel) result.getResult());
 	}
 
 

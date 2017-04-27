@@ -1,23 +1,13 @@
 package main.java.generator.service.impl;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import main.java.generator.dao.UserPoMapper;
-import main.java.generator.model.User;
-import main.java.generator.po.UserPo;
-import main.java.generator.po.UserPoExample;
+import main.java.generator.dao.UserMapper;
+import main.java.generator.po.User;
+import main.java.generator.po.UserExample;
 import main.java.generator.service.LoginService;
 import main.java.generator.utils.Result;
 
@@ -25,7 +15,7 @@ import main.java.generator.utils.Result;
 public class LoginServiceImpl implements LoginService{
 	
 	@Autowired
-	UserPoMapper userPoMapper;
+	UserMapper userPoMapper;
 
 	@Override
 	public Result login(User user) {
@@ -38,10 +28,10 @@ public class LoginServiceImpl implements LoginService{
 			result.setMessage(Result.CODE_103);
 			result.setResult(null);
 		}
-		UserPoExample ex = new UserPoExample();
+		UserExample ex = new UserExample();
 		ex.createCriteria().andUsernameEqualTo(user.getUsername())
 			.andPasswordEqualTo(user.getPassword());
-		List<UserPo> list = userPoMapper.selectByExample(ex);
+		List<User> list = userPoMapper.selectByExample(ex);
 		if(list.isEmpty()){
 			result.setCode(0);
 			result.setMessage(Result.CODE_0);
@@ -54,7 +44,7 @@ public class LoginServiceImpl implements LoginService{
 			return result;
 		}
 		else{
-			UserPo po = list.get(0);
+			User po = list.get(0);
 			User rUser = new User();
 			rUser.setRole(po.getRole());
 			rUser.setUsername(po.getUsername());
