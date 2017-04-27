@@ -24,6 +24,7 @@
 <script type="text/javascript" src="<c:url value="/resource/js/bootstrap/bootstrap-table.js" />" ></script> 
 <script type="text/javascript" src="<c:url value="/resource/js/bootstrap/bootstrap-table-zh-CN.js" />" ></script> 
 <script type="text/javascript" src="<c:url value="/resource/js/bootstrap/bootstrap-table-extension.js" />" ></script>  
+<script type="text/javascript" src="<c:url value="/resource/js/bootstrap/bootbox.min.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/resource/js/template.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/resource/js/outerTemplate.js" />" ></script>  
 <script type="text/javascript" src="<c:url value="/resource/js/argueTemplate.js" />" ></script>  
