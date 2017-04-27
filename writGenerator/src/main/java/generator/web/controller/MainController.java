@@ -1,7 +1,9 @@
 package main.java.generator.web.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,6 +55,18 @@ public class MainController {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("writModel", (WritModel) result.getResult());
 		return new ModelAndView("main", "writModel", (WritModel) result.getResult());
+	}
+	
+	@RequestMapping(value="mywrits")
+	public @ResponseBody ModelAndView getWrits(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
+		ModelAndView mv = new ModelAndView("mywrit");
+		return mv;
+	}
+	
+	@RequestMapping(value="accountManage")
+	public @ResponseBody ModelAndView getAccountManage(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
+		ModelAndView mv = new ModelAndView("account");
+		return mv;
 	}
 
 }

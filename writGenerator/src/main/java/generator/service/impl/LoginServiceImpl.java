@@ -65,19 +65,4 @@ public class LoginServiceImpl implements LoginService{
 		
 		return result;
 	}
-	
-	@RequestMapping(value="mywrits")
-	public @ResponseBody ModelAndView getWrits(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
-		ModelAndView mv = new ModelAndView("mywrit");
-		return mv;
-	}
-	
-	@RequestMapping(value="accountManage")
-	public @ResponseBody ModelAndView getAccountManage(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
-		ModelAndView mv = new ModelAndView("account");
-		return mv;
-	}
-	
-	
-
 }
