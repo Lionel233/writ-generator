@@ -42,6 +42,16 @@ public class MainController {
 		}
 		return list;
 	}
+	
+	@RequestMapping(value = "deleteAndShowUser")
+	public @ResponseBody ArrayList<Data> deleteUser(HttpServletRequest request, HttpServletResponse response,@Param("id")int id) {
+		ArrayList<Data> list = new ArrayList<Data>();
+		Data aData = new Data(0, "yeyeye", "2017-04-26");
+		for (int i = 0; i < 11; i++) {
+			list.add(aData);
+		}
+		return list;
+	}
 
 
 	@RequestMapping(value = "codeRecord")
