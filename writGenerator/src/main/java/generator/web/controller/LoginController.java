@@ -15,18 +15,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.model.User;
 import main.java.generator.service.LoginService;
+import main.java.generator.service.impl.LawGenerateService;
 import main.java.generator.utils.Result;
 
 @Controller
 public class LoginController {
 	@Autowired
 	LoginService loginService;
+	@Autowired
+	LawGenerateService lawGenerateService;
 	
 	@RequestMapping(value = "login")
 	public @ResponseBody ModelAndView login(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
+		
+		//lawGenerateService.generateLaw();
 		
 		Result result = loginService.login(user);
 		if(result.getCode() != 0){
@@ -45,16 +50,4 @@ public class LoginController {
 		}
 	}
 
-	
-	@RequestMapping(value="mywrits")
-	public @ResponseBody ModelAndView getWrits(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
-		ModelAndView mv = new ModelAndView("mywrit");
-		return mv;
-	}
-	
-	@RequestMapping(value="accountManage")
-	public @ResponseBody ModelAndView getAccountManage(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
-		ModelAndView mv = new ModelAndView("account");
-		return mv;
-	}
 }

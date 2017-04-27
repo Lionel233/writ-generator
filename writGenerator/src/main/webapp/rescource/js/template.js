@@ -9,7 +9,7 @@ var innerLayer = heredoc(function(){
      <label for="manager" class="col-sm-2 control-label">名称</label>
      <div class="col-sm-4">
      <div class="input-group">
-     <input type="text" class="form-control allEv" id="name" value="${name}"
+     <input type="text" class="form-control allEv" id="name" name="evName" value="${name}"
      placeholder="证据名称">
      <span class="input-group-btn">
      <button class="btn btn-default removeButton" type="button" style="color:red">X</button>
@@ -23,20 +23,20 @@ var innerLayer = heredoc(function(){
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">明细</label>
      <div class="col-sm-8">
-     <input type="text" class="form-control" id="detail" value="${detail}"
+     <input type="text" class="form-control" id="detail" name="evDetail" value="${detail}"
      placeholder="证据明细">
      </div>
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">以证明</label>
      <div class="col-sm-8">
-     <input type="text" class="form-control" id="prove" value="${prove}" placeholder="证据目的">
+     <input type="text" class="form-control" id="prove" value="${prove}" name="prove" placeholder="证据目的">
      </div>
      </div>
      <div class="form-group">
      <label for="manager" class="col-sm-2 control-label">种类</label>
      <div class="col-sm-4">
-     <select id="type" class="select2">
+     <select id="type" class="select2" name="evType">
      <option value="书证">书证</option>
      <option value="物证">物证</option>
      <option value="证人证言">证人证言</option>

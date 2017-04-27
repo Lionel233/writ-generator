@@ -1,9 +1,18 @@
 package main.java.generator.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import main.java.generator.dao.UserPoMapper;
 import main.java.generator.model.User;
@@ -55,6 +64,18 @@ public class LoginServiceImpl implements LoginService{
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping(value="mywrits")
+	public @ResponseBody ModelAndView getWrits(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
+		ModelAndView mv = new ModelAndView("mywrit");
+		return mv;
+	}
+	
+	@RequestMapping(value="accountManage")
+	public @ResponseBody ModelAndView getAccountManage(HttpServletRequest request, HttpServletResponse response,@Param("username")String username,@Param("password")String password) throws ServletException, IOException{
+		ModelAndView mv = new ModelAndView("account");
+		return mv;
 	}
 	
 	
