@@ -39,21 +39,21 @@
 	}
 
 	function operateFormatter(value, row, index) {
-		return [ '<a href="javascript:editUser(' + row.id + ', \'' + row.name + '\')" title="编辑">',
+		return [ '<a href="javascript:editUser(' + row.id + ', \'' + row.name + ', \'' + row.password + '\')" title="编辑">',
 				'<i class="glyphicon glyphicon-edit"></i>', '</a>  ',
-				'<a href="javascript:deleteUser(' + row.id + ')" title="删除">',
+				'<a href="javascript:deleteUser(' + row.id + ', \'' + row.court + ', \'' + row.role + '\')" title="删除">',
 				'<i class="glyphicon glyphicon-remove"></i>', '</a>', ]
 				.join('');
 	}
 
-	function deleteUser(id) {
+	function deleteUser(id,court,role) {
 		if (workingRowId != NO_EDITTING) {
 			bootbox.alert("您已经开始编辑，请保存或取消当前修改后再试。");
 		} else {
 			bootbox.confirm("是否删除", function(r) {
 				if (r) {
 					$("#userTable").bootstrapTable('refresh', {
-	                    url: 'deleteAndShowUser?id='+id
+	                    url: 'deleteAndShowUser?id='+id+'&court='+court+'&role='+role
 	                });
 				}
 			});
@@ -70,6 +70,13 @@
 	                            <input id="name" class="form-control" name="title" placeholder="姓名"></input>\
 	                        </div>\
 	                    </div>\
+	                    <div class="form-group">\
+                        <label class="col-sm-3 control-label no-padding-right">\
+                        密码 </label>\
+                        <div class="col-sm-6">\
+                            <input id="password" class="form-control" name="content" placeholder="密码"></input>\
+                        </div>\
+                    </div>\
 	                    <div class="form-group">\
 	                        <label class="col-sm-3 control-label no-padding-right">\
 	                        联系电话 </label>\
@@ -94,7 +101,7 @@
 	                "className" : "btn btn-primary",
 	                "callback": function() {
 						$("#userTable").bootstrapTable('refresh', {
-		                    url: 'addAndShowUser?&name='+$("#name").val+'&phone='+$("#phone").val+'&court='+$("#court").val
+		                    url: 'addAndShowUser?&name='+$("#name").val+'&phone='+$("#phone").val+'&court='+$("#court").val+'&password='+$("#password").val
 		                });
 	                }
 	            },
@@ -106,7 +113,7 @@
 	    });		
 	}
 
-	function editUser(id, name) {
+	function editUser(id, name,password) {
 		bootbox
 				.dialog({
 					message : '<style>.datepicker{z-index: 99999 !important}<\/style>\
@@ -118,6 +125,13 @@
                             <input id="name" class="form-control" name="title" placeholder="姓名" value='+ name +'></input>\
                         </div>\
                     </div>\
+                    <div class="form-group">\
+                    <label class="col-sm-3 control-label no-padding-right">\
+                    密码 </label>\
+                    <div class="col-sm-6">\
+                        <input id="password" class="form-control" name="content" placeholder="密码"value='+ password +'></input>\
+                    </div>\
+                </div>\
                     <div class="form-group">\
                         <label class="col-sm-3 control-label no-padding-right">\
                         联系电话 </label>\
@@ -144,6 +158,8 @@
 										{
 											url : 'updateAndShowUser?id=' + id
 													+ '&name=' + $("#name").val
+													+'&password='
+													+$("#password").val
 													+ '&phone='
 													+ $("#phone").val
 													+ '&court='
