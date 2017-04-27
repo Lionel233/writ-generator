@@ -46,7 +46,27 @@ public class MainController {
 	@RequestMapping(value = "deleteAndShowUser")
 	public @ResponseBody ArrayList<Data> deleteUser(HttpServletRequest request, HttpServletResponse response,@Param("id")int id) {
 		ArrayList<Data> list = new ArrayList<Data>();
+		Data aData = new Data(0, "add", "2017-04-26");
+		for (int i = 0; i < 5; i++) {
+			list.add(aData);
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = "addAndShowUser")
+	public @ResponseBody ArrayList<Data> addUser(HttpServletRequest request, HttpServletResponse response,@Param("name")String name,@Param("phone")String phone,@Param("court")String court) {
+		ArrayList<Data> list = new ArrayList<Data>();
 		Data aData = new Data(0, "yeyeye", "2017-04-26");
+		for (int i = 0; i < 5; i++) {
+			list.add(aData);
+		}
+		return list;
+	}
+	
+	@RequestMapping(value = "updateAndShowUser")
+	public @ResponseBody ArrayList<Data> updateUser(HttpServletRequest request, HttpServletResponse response,@Param("id")int id,@Param("name")String name,@Param("phone")String phone,@Param("court")String court) {
+		ArrayList<Data> list = new ArrayList<Data>();
+		Data aData = new Data(0, "nonono", "2017-04-26");
 		for (int i = 0; i < 11; i++) {
 			list.add(aData);
 		}

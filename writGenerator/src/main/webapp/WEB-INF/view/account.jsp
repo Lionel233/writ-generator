@@ -11,7 +11,7 @@
 		<div class="container wb">
 			<div id="toolbar" class="content-operate">
 				<div class="content-operate-right">
-					<a class="button btn-green" href="javascript:addSemester();">添加法官</a>
+					<a class="button btn-green" href="javascript:addUser();">添加法官</a>
 				</div>
 			</div>
 			<table id="userTable" data-toggle="table" data-pagination="true"
@@ -39,7 +39,7 @@
 	}
 
 	function operateFormatter(value, row, index) {
-		return [ '<a href="javascript:editUser(' + row.id + ')" title="编辑">',
+		return [ '<a href="javascript:editUser(' + row.id + ', \'' + row.name + '\')" title="编辑">',
 				'<i class="glyphicon glyphicon-edit"></i>', '</a>  ',
 				'<a href="javascript:deleteUser(' + row.id + ')" title="删除">',
 				'<i class="glyphicon glyphicon-remove"></i>', '</a>', ]
@@ -58,5 +58,105 @@
 				}
 			});
 		}
+	}
+	
+	function addUser(){
+		 bootbox.dialog({
+				message: '<style>.datepicker{z-index: 99999 !important}<\/style>\
+	                <form class="form-horizontal" role="form" id="updateForm">\
+	                    <div class="form-group">\
+	                        <label class="col-sm-3 control-label no-padding-right"> 姓名 </label>\
+	                        <div class="col-sm-6">\
+	                            <input id="name" class="form-control" name="title" placeholder="姓名"></input>\
+	                        </div>\
+	                    </div>\
+	                    <div class="form-group">\
+	                        <label class="col-sm-3 control-label no-padding-right">\
+	                        联系电话 </label>\
+	                        <div class="col-sm-6">\
+	                            <input id="phone" class="form-control" name="content" placeholder="联系电话"></input>\
+	                        </div>\
+	                    </div>\
+	                    <div class="form-group">\
+	                        <label class="col-sm-3 control-label no-padding-right">\
+	                        所属法院 </label>\
+	                        <div class="col-sm-6">\
+	                            <input id="court" class="form-control" name="target" placeholder="所属法院"></input>\
+	                        </div>\
+	                    </div>\
+	                  </form>',
+	        title: "增加法官",
+	         buttons:             
+	        {
+	            "success" :
+	             {
+	                "label" : "确定",
+	                "className" : "btn btn-primary",
+	                "callback": function() {
+						$("#userTable").bootstrapTable('refresh', {
+		                    url: 'addAndShowUser?&name='+$("#name").val+'&phone='+$("#phone").val+'&court='+$("#court").val
+		                });
+	                }
+	            },
+	        "cancel": {
+	            "label" : "取消",
+	            "className" : "btn btn-default"
+	            }
+	        }
+	    });		
+	}
+
+	function editUser(id, name) {
+		bootbox
+				.dialog({
+					message : '<style>.datepicker{z-index: 99999 !important}<\/style>\
+                <form class="form-horizontal" role="form" id="updateForm">\
+                    <input type="hidden" name="pid" value="'+ id +'" />\
+                    <div class="form-group">\
+                        <label class="col-sm-3 control-label no-padding-right"> 姓名 </label>\
+                        <div class="col-sm-6">\
+                            <input id="name" class="form-control" name="title" placeholder="姓名" value='+ name +'></input>\
+                        </div>\
+                    </div>\
+                    <div class="form-group">\
+                        <label class="col-sm-3 control-label no-padding-right">\
+                        联系电话 </label>\
+                        <div class="col-sm-6">\
+                            <input id="phone" class="form-control" name="content" placeholder="联系电话"></input>\
+                        </div>\
+                    </div>\
+                    <div class="form-group">\
+                        <label class="col-sm-3 control-label no-padding-right">\
+                        所属法院 </label>\
+                        <div class="col-sm-6">\
+                            <input id="court" class="form-control" name="target" placeholder="所属法院"></input>\
+                        </div>\
+                    </div>\
+                  </form>',
+					title : "修改法官",
+					buttons : {
+						"success" : {
+							"label" : "确定",
+							"className" : "btn btn-primary",
+							"callback" : function() {
+								$("#userTable").bootstrapTable(
+										'refresh',
+										{
+											url : 'updateAndShowUser?id=' + id
+													+ '&name=' + $("#name").val
+													+ '&phone='
+													+ $("#phone").val
+													+ '&court='
+													+ $("#court").val
+										});
+							}
+						},
+						"cancel" : {
+							"label" : "取消",
+							"className" : "btn btn-default"
+						}
+					}
+
+				});
 	}
 </script>
