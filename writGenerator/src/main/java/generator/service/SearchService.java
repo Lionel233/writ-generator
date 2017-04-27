@@ -10,5 +10,7 @@ public interface SearchService {
 	 * @return
 	 */
 	public Result isCaseExist(String code);
+	
+	public Result getCaseRecord(String code);
 
 }
