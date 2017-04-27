@@ -1,6 +1,6 @@
 package main.java.generator.service;
 
-import main.java.generator.model.User;
+import main.java.generator.po.User;
 import main.java.generator.utils.Result;
 
 public interface LoginService {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import main.java.generator.model.User;
+import main.java.generator.po.User;
 import main.java.generator.service.LawService;
 import main.java.generator.service.LoginService;
 import main.java.generator.utils.Result;
