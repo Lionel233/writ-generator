@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import main.java.generator.service.AccountService;
 import main.java.generator.utils.Result;
 import main.java.generator.utils.ServletUtils;
 
+@Controller
 public class AccountController {
 	@Autowired
 	AccountService accountService;
@@ -43,8 +45,8 @@ public class AccountController {
 		User currentUser = (User)(request.getSession().getAttribute("user"));
 		User user = new User();
 		user.setId(id);
-		//user.setCourt(court);
-		//user.setRole(role);
+		user.setCourt("0");
+		user.setRole(0);
 		Result result = accountService.deleteAccount(user,currentUser);
 		
 		if(result.getCode() != 0){
@@ -67,10 +69,10 @@ public class AccountController {
 		User currentUser = (User)(request.getSession().getAttribute("user"));
 		User user = new User();
 		user.setCourt(court);
-		//user.setPassword(password);
+		user.setPassword("00");
 		user.setPhone(phone);
-		//user.setRole(role);
-		//user.setUsername(username);
+		user.setRole(0);
+		user.setUsername(name);
 		user.setValid(true);
 		Result result = accountService.addAccount(user,currentUser);
 		
@@ -96,10 +98,10 @@ public class AccountController {
 		User user = new User();
 		user.setId(id);
 		user.setCourt(court);
-		//user.setPassword(password);
+		user.setPassword("00");
 		user.setPhone(phone);
-		//user.setRole(role);
-		//user.setUsername(username);
+		user.setRole(0);
+		user.setUsername(name);
 		user.setValid(true);
 		
 		Result result = accountService.updateAccount(user,currentUser);

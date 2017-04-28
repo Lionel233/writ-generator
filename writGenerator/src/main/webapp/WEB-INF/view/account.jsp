@@ -15,12 +15,12 @@
 				</div>
 			</div>
 			<table id="userTable" data-toggle="table" data-pagination="true"
-				data-url="getWritList">
+				data-url="getUserList">
 				<thead>
 					<tr>
 						<th data-width="80" data-formatter="nameFormatter">姓名</th>
-						<th data-width="20" data-field="date" data-align="">联系电话</th>
-						<th data-width="20" data-field="date" data-align="">所属法院</th>
+						<th data-width="20" data-field="phone" data-align="">联系电话</th>
+						<th data-width="20" data-field="court" data-align="">所属法院</th>
 						<th data-width="80" data-formatter="operateFormatter">操作</th>
 					</tr>
 				</thead>
@@ -34,7 +34,7 @@
 	var workingRowId = NO_EDITTING;
 
 	function nameFormatter(value, row, index) {
-		return '<a class="ml10" href="showWrit?id=' + row.name + '">'
+		return '<a class="ml10" href="showWrit?id=' + row.username + '">'
 				+ row.name + '</a>';
 	}
 

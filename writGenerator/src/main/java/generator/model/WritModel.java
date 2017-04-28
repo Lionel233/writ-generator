@@ -33,7 +33,7 @@ public class WritModel implements Serializable {
 	/**
 	 * 查明事实
 	 */
-	private List<Fact> facts;
+	private List<Fact> facts = new ArrayList<Fact>();
 
 	/**
 	 * 原告证据列表

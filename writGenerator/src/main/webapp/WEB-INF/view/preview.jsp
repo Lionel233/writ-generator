@@ -26,17 +26,17 @@
 		</c:forEach>
 
 
-		<!-- 开庭 -->
+<%-- 		<!-- 开庭 -->
 
 		<!-- 案件基本情况 -->
 		<!-- 当事人（诉／辩）称 -->
 		<c:forEach items="${writModel.argueList}" var="argue">
-			${argue.litigant.wsDsrb.xm}称，${argue.arguement}
+			${argue.litigant}称，${argue.argument}
 		</c:forEach>
 
 		<!-- 查明事实段 -->
 		<c:forEach items="${writModel.argueList}" var="argue">
-			${argue.litigant.wsDsrb.xm}称，${argue.arguement}
+			${argue.litigant}，${argue.argument}
 		</c:forEach>
 
 		<!-- 证据段 -->
@@ -44,7 +44,7 @@
 
 		<!-- 裁判分析过程 -->
 
-		<!-- 判决结果 -->
+		<!-- 判决结果 --> --%>
 
 		<div class="form-action"
 			style="width: 200px; float: none; display: block; margin-left: auto; margin-right: auto;">
