@@ -141,19 +141,50 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Result findAccountById(int id, User currentUser) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result = new Result();
+		result.setCode(0);
+		result.setMessage(Result.CODE_0);
+		
+		List<User> list = showAccount(currentUser);
+		for(User token:list){
+			if(token.getId() == id){
+				result.setResult(token);
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public Result findAccountByRole(int role, User currentUser) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result = new Result();
+		result.setCode(0);
+		result.setMessage(Result.CODE_0);
+		List<User> resultList = new ArrayList<User>();
+		
+		List<User> list = showAccount(currentUser);
+		for(User token:list){
+			if(token.getRole() == role){
+				resultList.add(token);
+			}
+		}
+		result.setResult(resultList);
+		return result;
 	}
 
 	@Override
 	public Result findAccountByCourt(String court, User currentUser) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result = new Result();
+		result.setCode(0);
+		result.setMessage(Result.CODE_0);
+		List<User> resultList = new ArrayList<User>();
+		
+		List<User> list = showAccount(currentUser);
+		for(User token:list){
+			if(token.getCourt().equals(court)){
+				resultList.add(token);
+			}
+		}
+		result.setResult(resultList);
+		return result;
 	}
 }
