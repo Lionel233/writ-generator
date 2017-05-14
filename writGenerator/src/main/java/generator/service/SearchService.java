@@ -12,5 +12,7 @@ public interface SearchService {
 	public Result isCaseExist(String code);
 	
 	public Result getCaseRecord(String code);
+	
+	public Result getSearchAdvices(String code);
 
 }

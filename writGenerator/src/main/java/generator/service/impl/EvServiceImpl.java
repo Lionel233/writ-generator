@@ -27,6 +27,7 @@ public class EvServiceImpl implements EvService{
 	
 	public static ArrayList<Pair> keywords = new ArrayList<Pair>();
 	
+	//在service初始化的时候读入存有证据名称与种类对应信息的数据
 	static{
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(Constants.RESOURCE_PATH + "evidence.txt")));
@@ -34,10 +35,8 @@ public class EvServiceImpl implements EvService{
 			while((line = reader.readLine())!=null){
 				if(line.trim().isEmpty()) continue;
 				String[] pairs = line.split("；");
-//				System.out.println(line);
 				keywords.add(new Pair(pairs[0],pairs[1]));
 			}
-			
 			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -52,19 +51,13 @@ public class EvServiceImpl implements EvService{
 	 * @param ev
 	 * @return
 	 */
-	public String judge(String ev){
+	@Override
+	public String getEvType(String ev){
 		for(Pair pair:keywords){
 			if(ev.contains(pair.keyword)){
 				return pair.type;
 			}
 		}
 		return EVTYPE_OTHER;
-	}
-
-	@Override
-	public String getEvType(String name){
-//		System.out.println(name);
-//		System.out.println(this.judge(name));
-		return this.judge(name);
 	}
 }

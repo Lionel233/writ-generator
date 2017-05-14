@@ -21,21 +21,23 @@
 </style>
 <body>
 	<t:header/>
-	<form id="searchForm" action="codeRecord" method="post"
+	<form id="searchForm" action="codeRecord" method="post" autocomplete="off"
 		style="position: relative; margin: 230px;">
 		<input type="input" name="code" id="code"
 			class="form-control center-block" placeholder="输入案号">
 		<button type="button" id="searchBtn2" class="btn btn-primary">
 			<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;搜索
 		</button>
+		<ul class="results" >
+			 <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+			 <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+	 		<li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+         	<li><a href="index.html">Search Result #4</a></li>
+		 </ul>
 	</form>
 </body>
 
 <script type="text/javascript">
-	$("#searchBtn2").click(function() {
-		search();
-	});
-
 	function search() {
 		$.ajax({
 			url : "/writGenerator/api/searchCode",
@@ -52,11 +54,61 @@
 			}
 		});
 	}
-
-	$("#code").keydown(function(event) {
-		if (event.which == "13") {
+	
+	function autoComplete(){
+		$.ajax({
+			url:"/writGenerator/api/searchAutoComplete",
+			data:{
+				keyword:$("#code").val()
+			},
+			type:"POST",
+			success:function(data){
+				console.log(data);
+				$(".results").empty();
+				var max = 8;
+				if(data.length < 8){
+					max = data.length;
+				}
+				for(var i = 0;i < max;i ++){
+					$('.results').append(
+						$('<li>').append(
+								data[i].ah
+						)
+					);
+				}
+				
+			}
+		});
+	}
+	
+	$(document).ready(function(){
+		$("#searchBtn2").click(function() {
 			search();
-			return false;
-		}
+		});
+		
+		$(".results").hide();
+		
+		$("#code").blur(function(){
+			$(".results").hide();
+		});
+		
+		$("#code").focus(function(){
+			$(".results").show();
+		});
+		
+		$("#code").change(function(){
+			autoComplete();
+		});
+
+		$("#code").keydown(function(event) {
+			if (event.which == "13") {
+				search();
+				return false;
+			}
+		});
 	});
+	
+
+	
+	
 </script>

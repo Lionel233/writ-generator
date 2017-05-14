@@ -1,6 +1,7 @@
 package main.java.generator.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,18 @@ public class AccountServiceImpl implements AccountService{
 	public Result addAccount(User user,User currentUser) {
 		Result result = new Result();
 		
-		if(user.getCourt() == null || currentUser.getCourt() == null){
+		//只有role=0即系统管理员此项属性才是null，否则提示信息不足
+		if((user.getRole()!= 0 && user.getCourt() == null) || 
+				(currentUser.getCourt() == null && currentUser.getRole()!=0)){
 			result.setCode(103);
 			result.setMessage(Result.CODE_103);
+			return result;
 		}
 		
+		//currentUser为系统管理员或 法院管理员且正在管理本法院人员时
 		if(currentUser.getRole() == 0 ||
 				(currentUser.getRole() == 1 && currentUser.getCourt().equals(user.getCourt()))){
+			user.setCreatat(new Date());
 			userMapper.insert(user);
 			
 			result.setCode(0);
@@ -49,16 +55,23 @@ public class AccountServiceImpl implements AccountService{
 	public Result deleteAccount(User user, User currentUser) {
 		Result result = new Result();
 
-		if(user.getCourt() == null || currentUser.getCourt() == null){
+		//只有role=0即系统管理员此项属性才是null，否则提示信息不足
+		if((user.getRole()!= 0 && user.getCourt() == null) || 
+				(currentUser.getCourt() == null && currentUser.getRole()!=0)){
 			result.setCode(103);
 			result.setMessage(Result.CODE_103);
+			return result;
 		}
 		
+		//currentUser为系统管理员或 法院管理员且正在管理本法院人员时
 		if(currentUser.getRole() == 0
 				|| (currentUser.getRole() == 1 && currentUser.getCourt().equals(user.getCourt()))){
+			//删除时并不直接删除此项记录，而是将valid位置为false，因为文书编辑表中以用户id作为外键，我们想保留文书编辑表信息则不能直接删除用户记录
 			UserExample ex = new UserExample();
-			ex.createCriteria().andIdEqualTo(user.getId());
-			userMapper.deleteByExample(ex);
+			User userToDelete = userMapper.selectByPrimaryKey(user.getId());
+			userToDelete.setValid(false);
+			userToDelete.setDeleteat(new Date());
+			userMapper.updateByPrimaryKey(userToDelete);
 			
 			result.setCode(0);
 			result.setMessage(Result.CODE_0);
@@ -96,13 +109,15 @@ public class AccountServiceImpl implements AccountService{
 		List<User> userList = new ArrayList<User>();
 		
 		UserExample ex = new UserExample();
+		//只显示未被删除的用户
 		
 		switch(currentUser.getRole()){
 		case 0:
+			ex.createCriteria().andValidEqualTo(true);
 			userList = userMapper.selectByExample(new UserExample());
 			break;
 		case 1:
-			ex.createCriteria().andCourtEqualTo(currentUser.getCourt());
+			ex.createCriteria().andValidEqualTo(true).andCourtEqualTo(currentUser.getCourt());
 			userList = userMapper.selectByExample(new UserExample());
 			break;
 		case 2:
@@ -122,5 +137,23 @@ public class AccountServiceImpl implements AccountService{
 		result.setResult(courtList);
 		
 		return result;
+	}
+
+	@Override
+	public Result findAccountById(int id, User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result findAccountByRole(int role, User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result findAccountByCourt(String court, User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

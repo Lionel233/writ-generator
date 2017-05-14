@@ -278,6 +278,12 @@ public class PreviewServiceImpl implements PreviewService{
 		return result;
 	}
 
+	@Override
+	public Result save(WritModel writModel, User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 class ArgueJ{

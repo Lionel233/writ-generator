@@ -38,14 +38,7 @@ var fact = [ {
 	fact : ""
 } ]
 
-var law = [ {
-	id : 0,
-	law : "",
-	clause : ""
-} ]
-
 $(document).ready(function() {
-	
 	$.template("innerlayer", innerLayer);
 	$.template("outerLayer", outerLayer);
 	$.tmpl("outerLayer", movieSeries).appendTo("#outerContainer");
@@ -92,10 +85,10 @@ $(document).ready(function() {
 		$("#argueContainer").empty();
 		$.tmpl("argueLayer", argue).appendTo("#argueContainer");
 
-	});
+	})
 
 	$.template("factLayer", factLayer);
-	$.tmpl("factLayer", fact).appendTo("#factContainer");
+	$.tmpl("factLayer", fact).appendTo("factContainer");
 	$("#addFact").click(function() {
 		fact.push({
 			id : fact.length,
@@ -103,8 +96,8 @@ $(document).ready(function() {
 		});
 		$("#factContainer").empty();
 		$.tmpl("factLayer", fact).appendTo("#factContainer");
-	});
-
+	})
+	
 	$.template("lawLayer", lawLayer);
 	$.tmpl("lawLayer", law).appendTo("#lawContainer");
 	$("#addLaw").click(function() {
@@ -121,29 +114,29 @@ $(document).ready(function() {
 
 // 保存
 function submit() {
-	$("#centerForm").attr("action", "save");
-	$.ajax({
-		url : $("#centerForm").attr("action"),
-		data : {
-			ajxh : ajxh,
-			evs : JSON.stringify(movies),
-			evSeries : JSON.stringify(movieSeries),
-			exams : JSON.stringify(exams),
-			examEvs : JSON.stringify(examEvs),
-			argues : JSON.stringify(argue),
-			facts : JSON.stringify(fact)
-		},
-		type : "POST",
-		success : function(r) {
-			if (r == 0) {
-				alert("保存成功，点击确定返回中心列表", function() {
-					location.href = "CenterList";
-				});
-			} else {
-				alert("更新失败，点击确定重新载入编辑页面");
-			}
-		}
-	});
+    $("#centerForm").attr("action", "save");
+    $.ajax({
+        url: $("#centerForm").attr("action"),
+        data: {
+        	ajxh: ajxh,
+            evs: JSON.stringify(movies),
+            evSeries: JSON.stringify(movieSeries),
+            exams: JSON.stringify(exams),
+            examEvs: JSON.stringify(examEvs),
+            argues: JSON.stringify(argue),
+            facts: JSON.stringify(fact)
+        },
+        type : "POST",
+        success : function(r) {
+        if (r == 0) {
+            alert("保存成功，点击确定返回中心列表", function() {
+                location.href = "CenterList";
+            });
+        } else {
+            alert("更新失败，点击确定重新载入编辑页面");
+        }
+    }
+});
 }
 
 // 预览

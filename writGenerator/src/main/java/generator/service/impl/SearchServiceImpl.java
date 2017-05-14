@@ -117,4 +117,10 @@ public class SearchServiceImpl implements SearchService{
 		return result;
 	}
 
+	@Override
+	public Result getSearchAdvices(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

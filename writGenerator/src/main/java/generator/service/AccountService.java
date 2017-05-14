@@ -15,6 +15,12 @@ public interface AccountService {
 	
 	public List<User> showAccount(User currentUser);
 	
+	public Result findAccountById(int id,User currentUser);
+	
+	public Result findAccountByRole(int role,User currentUser);
+	
+	public Result findAccountByCourt(String court,User currentUser);
+	
 	public Result getAllCourt();
 
 }
